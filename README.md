@@ -18,7 +18,7 @@ Az anyag **Claude-dal** (Anthropic nyelvi modell) közösen készült. A tézist
 
 | Fájl | Mi ez |
 |---|---|
-| `eloadas.html` | az élő változat (12 dia, jegyzetnézet: N, előadói ablak: J) |
+| `eloadas.html` | az élő változat (13 dia: 12 élő + tartalék; jegyzetnézet: N, előadói ablak: J) |
 | `diak.html` | az olvasható főelőadás (21 dia, ellenpróbákkal) |
 | `kiegeszito.html` | a kiegészítő (8 dia, Studio-demó) |
 | `szotar.html`, `szotar_adat.py` | a szószedet és annak forrása |
