@@ -12,7 +12,7 @@ A kapu-lemma egyszerű (egy ellenőrzés és egy tartalék érték); a szakiroda
 
 ## Közreműködés
 
-Az anyag **Claude-dal** (Anthropic nyelvi modell) közösen készült. A tézist, a keretet, a MetaSpace-eszközt, a döntéseket és a felelősséget a szerző adta; a szöveg és a kód nagy részét a modell írta. A főelőadást és a kiegészítőt a szerző dianként hagyta jóvá; a 2026. november 6-i átdolgozás diankénti jóváhagyás nélkül készült. A modell tévedhet: az átdolgozás során hét túlállítást találtunk és javítottunk. **Független ellenőrzés nincs.** Részletesen: [`kozremukodes.html`](kozremukodes.html).
+Az anyag **Claude-dal** (Anthropic nyelvi modell) közösen készült. A tézist, a keretet, a MetaSpace-eszközt, a döntéseket és a felelősséget a szerző adta; a szöveg és a kód nagy részét a modell írta. A főelőadást és a kiegészítőt a szerző diánként hagyta jóvá; a 2026. november 6-i átdolgozás diánkénti jóváhagyás nélkül készült. A modell tévedhet: az átdolgozás során hét túlzó állítást találtunk és javítottunk. **Független ellenőrzés nincs.** Részletesen: [`kozremukodes.html`](kozremukodes.html).
 
 ## Mi van a repóban
 
@@ -45,7 +45,7 @@ python -B bizonyitasok/szintek_kapcsolata.py
 Mindhárom körülbelül egy másodperc alatt lefut. Amit látnod kell:
 
 - **`teszt_kapu.py`**: a halmaz-tagság 200 012 bemenetre nem sérül (nem szám és végtelen is); viszont az időben összefüggő szabály (esés legfeljebb 2 ütés/perc/mp) sérül: a 150-ről 60-ra cserélés 90-es esés egy lépésben. Vagyis a lemma egy jel értékére igaz, időben összefüggő szabálynál az átmenet is számít.
-- **`pacemaker_kiut_feltetel.py`**: a kapu-lemma bizonyítása, a naiv lebegőpontos kapu ellenpéldája (nem szám) és a javított kapu bizonyítása az összes 2⁶⁴ bitmintára, a kiút-feltétel (a vészállapot egy lépésben nem érhető el: 10, illetve 53 mp), az optimális sáv (0,02/mp bizonyított, 0,03 ellenpélda).
+- **`pacemaker_kiut_feltetel.py`**: a kapu-lemma bizonyítása, a naiv lebegőpontos kapu ellenpéldája (nem szám) és a javított kapu bizonyítása az összes 2⁶⁴ bitmintára, a kiút-feltétel (a vészállapot nem érhető el egy lépésben minden állapotból; legfeljebb 10, illetve 53 másodperc kell hozzá), az optimális sáv (0,02/mp bizonyított, 0,03 ellenpélda).
 - **`szintek_kapcsolata.py`**: a helyi szabályból nem következik a közös (4 + 5 > 8), a kvóta-szerződés (N = 2, 3, 5, 8), a hiányzó kapu, a 3-3-3 minimum (9-ből lehetséges, 8-ból nem), a koncentrációs korlát.
 
 ## Mi reprodukálható, és mi nem
@@ -60,7 +60,7 @@ A bizonyítások egy **modellre** és **kimondott előfeltevésekre** (P1–P4) 
 
 ## Szedd szét
 
-Ha hibát, túlállítást vagy ellenpéldát találsz (a szövegben, a szkriptekben vagy a Studióban), nyiss egy [issue-t](https://github.com/LemonScripter/hinta-vibe-coding/issues). Ez az anyag pontosan ezt kéri.
+Ha hibát, túlzó állítást vagy ellenpéldát találsz (a szövegben, a szkriptekben vagy a Studióban), nyiss egy [issue-t](https://github.com/LemonScripter/hinta-vibe-coding/issues). Ez az anyag pontosan ezt kéri.
 
 ## Licenc
 
