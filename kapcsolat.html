@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A két előadás kapcsolata</title>
+<style>
+:root{--bg:#f6f4ee;--fg:#1d2a2c;--muted:#556569;--card:#ffffff;--line:#d8d4c6;--accent:#0f766e;--accent-soft:#d9efec}
+@media (prefers-color-scheme: dark){:root{--bg:#101719;--fg:#e8efee;--muted:#9fb0b3;--card:#172123;--line:#2a393c;--accent:#4fd1c5;--accent-soft:#173533}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;line-height:1.45;padding:2rem 1.5rem 3rem}
+main{max-width:70rem;margin:0 auto}
+.tag{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0}
+h1{font-size:2rem;margin:.2rem 0 .6rem}
+p{margin:.3rem 0}
+.muted{color:var(--muted)}
+.row{display:flex;gap:.8rem;flex-wrap:wrap;margin:1rem 0 1.4rem}
+.btn{display:inline-block;font-weight:700;color:var(--bg);background:var(--accent);text-decoration:none;border-radius:.45rem;padding:.45rem 1rem}
+table{border-collapse:collapse;width:100%;background:var(--card);border:1px solid var(--line);border-radius:.5rem;overflow:hidden;font-size:.95rem}
+th,td{padding:.55rem .8rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accent-soft);font-weight:700}
+tr:last-child td{border-bottom:0}
+a{color:var(--accent);font-weight:600}
+code{font-family:Consolas,"Cascadia Mono",monospace;background:var(--accent-soft);padding:.05em .3em;border-radius:.25em}
+@media (max-width:700px){th:nth-child(3),td:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+<main>
+  <p class="tag">HInTa · 2026. november 7.</p>
+  <h1>A két előadás kapcsolata</h1>
+  <p>A főelőadás a tételt adja (21 dia), a kiegészítő ugyanazt egy eszközön, élő demóval mutatja (8 dia). Mindkettő ugyanazt a pacemaker-példát használja, ugyanazzal az őszinteséggel: minden állításhoz ellenpróba tartozik.</p>
+  <div class="row">
+    <a class="btn" href="diak.html#1">Főelőadás (21 dia) →</a>
+    <a class="btn" href="kiegeszito.html#1">Kiegészítő (8 dia) →</a>
+    <a class="btn" href="szotar.html">Szószedet →</a>
+    <a class="btn" href="kozremukodes.html">Közreműködés →</a>
+  </div>
+  <table>
+    <thead><tr><th>Kiegészítő dia (gyakorlat)</th><th>Főelőadás dia (elmélet)</th><th>Mi a kapcsolat</th></tr></thead>
+    <tbody>
+      <tr><td><a href="kiegeszito.html#1">K1 · A tételtől az eszközig</a></td><td><a href="diak.html#11">11. dia · A vibe-coding kapuval</a></td><td>A tétel négy lépéssé válik: határ, ellenpélda, kapu, igazolás.</td></tr>
+      <tr><td><a href="kiegeszito.html#2">K2 · Amit az ember ír</a></td><td><a href="diak.html#6">6. dia · Pontos fogalmak: a pacemaker</a></td><td>Ugyanaz a valódi <code>pacemaker.bio</code>: E = 40–165, biztonságos érték 60.</td></tr>
+      <tr><td><a href="kiegeszito.html#3">K3 · A lyuk és a megnevezett veszély</a></td><td><a href="diak.html#9">9. dia · A tétel tagadása: ellenpélda-keresés</a></td><td>Ott elméletben, itt élőben: a gép csak a megnevezett veszélyt találja meg (P1).</td></tr>
+      <tr><td><a href="kiegeszito.html#4">K4 · Egy specifikáció, három nyelv</a></td><td><a href="diak.html#7">7. dia · A kapu-tétel (zárt világ elve)</a></td><td>Ott a tétel, itt a generált kapu három nyelven; a viselkedés nem teljesen azonos.</td></tr>
+      <tr><td><a href="kiegeszito.html#5">K5 · A lebegőpontos csapda</a></td><td><a href="diak.html#9">9. dia · A tétel tagadása: ellenpélda-keresés</a></td><td>Ott a kézzel írt kapu engedte át a nem-számot; itt a generált kapu blokkolja.</td></tr>
+      <tr><td><a href="kiegeszito.html#6">K6 · Az igazolási dosszié: mit állít és mit nem</a></td><td><a href="diak.html#20">20. dia · Két valódi próbálkozás</a></td><td>Nem idézünk hitelesítésként; a dosszié a saját naplónk, nem független ellenőrzés (P4).</td></tr>
+      <tr><td><a href="kiegeszito.html#7">K7 · Meglévő programból határ-váz</a></td><td><a href="diak.html#11">11. dia · A vibe-coding kapuval</a></td><td>A kódot nem kell elolvasni; a határt az ember adja meg.</td></tr>
+      <tr><td><a href="kiegeszito.html#8">K8 · Mit nem tud (még)</a></td><td><a href="diak.html#19">19. dia · Mi bizonyított, mi nem</a></td><td>Ugyanaz a mérleg az eszközre: teljesség, megkerülhetetlenség, független ellenőrzés.</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="margin-top:1rem;font-size:.9rem">Szavak és hasonlatok: a <a href="szotar.html">szószedet</a> megmondja, melyik szó mit jelent, mi a bevett informatikai neve, és hol <b>nem</b> szabad szó szerint érteni (például: szerkezeti analógia, nem izomorfia; biztonság, nem helyesség).</p>
+  <p class="muted" style="margin-top:1rem;font-size:.9rem">Javasolt menet: főelőadás 1–11. dia, majd a kiegészítő K1–K7 (élő demó, kb. 8–10 perc), utána a főelőadás 19. diája és K8, végül a 20. és a 21. dia. A Studio demóhoz internet kell: <a href="https://studio.metaspace.bio/app" target="_blank" rel="noopener">studio.metaspace.bio/app</a>.</p>
+</main>
+</body>
+</html>

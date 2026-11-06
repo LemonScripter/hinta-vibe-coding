@@ -1,0 +1,24 @@
+BIO_VERSION 1.0
+CELL PacemakerSafetyCore {
+  META { SIL: 3; STANDARD: "IEC 62304"; }
+  INTERFACE {
+    OUTPUT heart_rate:   FLOAT [bpm] RANGE(0, 300);
+    OUTPUT rate_accel:   FLOAT RANGE(0, 50);
+    OUTPUT rate_decel:   FLOAT RANGE(0, 50);
+    OUTPUT interval_ms:  FLOAT [ms] RANGE(0, 5000);
+    INPUT  battery:      FLOAT [pct] RANGE(0, 100);
+    INPUT  sensor_stable: BINARY;
+  }
+  INVARIANTS {
+    RULE upper_rate:   heart_rate <= 165.0;
+    RULE lower_rate:   heart_rate >= 40.0;
+    RULE smoothing:    rate_accel <= 2.0;
+    RULE min_interval: interval_ms >= 250;
+  }
+  HAZARDS { HAZARD fast_drop: rate_decel > 2.0; }
+  STATES {
+    STATE Standby { TRANSITION TO RateAdaptive IF battery > 10; }
+    STATE RateAdaptive { TRANSITION TO FailsafeVVI IF heart_rate > 165; }
+    STATE FailsafeVVI TYPE CRITICAL_SHIELD { heart_rate = 60.0; interval_ms = 250.0; }
+  }
+}

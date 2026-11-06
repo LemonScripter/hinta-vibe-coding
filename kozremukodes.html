@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Közreműködés: ki mit csinált</title>
+<style>
+:root{--bg:#f6f4ee;--fg:#1d2a2c;--muted:#556569;--card:#ffffff;--line:#d8d4c6;--accent:#0f766e;--accent-soft:#d9efec;--warn:#92400e;--warn-soft:#fdf0d5}
+@media (prefers-color-scheme: dark){:root{--bg:#101719;--fg:#e8efee;--muted:#9fb0b3;--card:#172123;--line:#2a393c;--accent:#4fd1c5;--accent-soft:#173533;--warn:#f6c76b;--warn-soft:#3a2f12}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:1.5rem 1.2rem 3rem}
+main{max-width:52rem;margin:0 auto}
+.tag{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0}
+h1{font-size:1.8rem;margin:.2rem 0 .6rem}
+h2{font-size:1.15rem;margin:1.8rem 0 .4rem;color:var(--accent)}
+p{margin:.45rem 0}
+.box{background:var(--warn-soft);border-left:.3rem solid var(--warn);border-radius:.3rem;padding:.7rem .9rem;margin:1rem 0}
+table{border-collapse:collapse;width:100%;background:var(--card);border:1px solid var(--line);font-size:.93rem}
+th,td{padding:.5rem .65rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accent-soft)}
+.muted{color:var(--muted)}
+a{color:var(--accent);font-weight:600}
+.btn{display:inline-block;font-weight:700;color:var(--bg);background:var(--accent);text-decoration:none;border-radius:.45rem;padding:.4rem .9rem;margin-right:.5rem}
+</style>
+</head>
+<body>
+<main>
+<p class="tag">HInTa · 2026. november 7. · változat: 2026-11-06</p>
+<h1>Közreműködés: ki mit csinált</h1>
+
+<div class="box"><b>Nyilatkozat.</b> Az előadás anyaga (diák, tanulmány, szószedet, bizonyító szkriptek) <b>Claude-dal</b>, az Anthropic nyelvi modelljével közösen készült. A tézist, a filozófiai keretet, a MetaSpace-eszközt, a döntéseket és a felelősséget a szerző adta; a szövegek és a kód nagy részét a modell fogalmazta és írta. A főelőadást és a kiegészítőt a szerző dianként hagyta jóvá; a 2026. november 6-i átdolgozás (szószedet, jegyzetek, tanulmány-bővítés, javítások) a szerző irányával, de diankénti jóváhagyás nélkül készült (a mai átdolgozás Claude Sonnet 5.5-tel). A modell tévedhet, és meggyőzően túlállíthat: az átdolgozás során hét ilyen túlállítást találtunk és javítottunk. Független ellenőrzés nincs. A felelősség a szerzőé, nem a modellé.</div>
+
+<h2>1. Ki mit csinált</h2>
+<table>
+<tr><th>Szerző (ember)</th><th>Claude (MI)</th></tr>
+<tr><td>A tézis; a filozófiai keret (nyelv és helyes viselkedés, a hallgatólagos tudás); a MetaSpace-eszköz és a szakterületi tudás.</td><td>A szövegek és a kód nagy része: diák, tanulmány, szószedet, Z3-szkriptek, a generátor-szkriptek.</td></tr>
+<tr><td>A munka szabályai: csak mért állítás, minden állításhoz ellenpróba, nincs zsargon. Javítások, ha a modell tévedett (például: a <code>.bio</code> az interfészt írja le).</td><td>Javaslatok, ellenérvek keresése, saját korábbi állításainak átvizsgálása (audit).</td></tr>
+<tr><td>Jóváhagyás, felelősség, a közzététel.</td><td>Nincs felelőssége, nem független ellenőr, nem szerző.</td></tr>
+</table>
+
+<h2>2. Hogyan nevezi ezt a szakma</h2>
+<p><b>A szerző a megrendelő és specifikáló, a felelős szerkesztő (angolul: principal).</b> Ő mondja ki, mi a cél és mi a megengedett, és ő hagyja jóvá az eredményt. <b>Claude a generátor és végrehajtó (ügynök, agent).</b> Nem szerzőtárs: a kiadói gyakorlat szerint (COPE, ICMJE ajánlások) az MI nem lehet szerző, mert a szerzőséghez felelősség kell, amit nem tud viselni; viszont a használatát közzé kell tenni. Ezt teszi ez az oldal.</p>
+<p><b>Ez nem tiszta „vibe-coding”.</b> Karpathy szerint (2025) a vibe-coding a kód átnézés nélküli elfogadása. Itt a szerző specifikált, irányított, kikötötte az ellenpróbát, és a főelőadást dianként jóváhagyta. Pontosabb leírás: <b>MI-asszisztált, ember által irányított és jóváhagyott munka</b>. A mai átdolgozás azonban diankénti jóváhagyás nélkül készült, és ott a szerző ténylegesen a „megengedett halmazt” (a munka szabályait) adta meg, a tartalmat nem nézte át.</p>
+
+<h2>3. Tyúk vagy tojás? Ki csinált kit?</h2>
+<p><b>Időrendben:</b> a tézis alapja (a szerző filozófiai tanulmányai és a MetaSpace) megelőzte a munkát a modellel; a pontos megfogalmazás és a szövegek viszont párbeszédben formálódtak: a modell pontosító szavakat (például szerkezeti analógia, bevett nevek), ellenérveket és kódot adott, a szerző pedig javított és irányt váltott. A modell nem hozta létre az eszközt és a tézist, a szerző pedig nem hozta létre a modellt: <b>a szöveg közös termék, a tézis és a felelősség a szerzőé</b>.</p>
+<p><b>Funkcionálisan nincs körkörösség, amíg a szerepek aszimmetrikusak:</b> az ember adja a megengedett halmazt (P1) és viseli a felelősséget; az MI a „doboz”, amelynek a kimenetét ítéljük meg. A tyúk–tojás probléma ott lenne valódi, ha a <i>kaput</i> is az MI adná, vagyis ha az MI ellenőrizné az MI kimenetét, és ez lenne az egyetlen ellenőrzés. Ez a független ellenőrzés hiánya (P4).</p>
+
+<h2>4. Az előadás saját tézisének próbája</h2>
+<p>A tézis szerint egy MI-ből jövő kimenet biztonsága kapuval kényszeríthető ki. Ez a munka maga is ilyen eset. Őszinte mérleg:</p>
+<table>
+<tr><th>Feltétel</th><th>Ebben a munkában</th></tr>
+<tr><td><b>P1</b> · a cél (a megengedett) helyes</td><td>A szerző adta: csak mért állítás, ellenpróba, nincs zsargon. Megvolt. Ez nem a modell dolga.</td></tr>
+<tr><td><b>P2a</b> · nincs mellékút</td><td><b>Nem teljesült.</b> A modell fogalmazása nem kényszerített kapun ment át; a mai átdolgozásnál a szerző jóváhagyása kimaradt.</td></tr>
+<tr><td><b>P4</b> · független ellenőrző</td><td><b>Nem volt.</b> A modell a saját korábbi kimenetét auditálta, és ugyanaz a modellcsalád hasonló hibákat követhet el. A független kapu egy külső emberi bírálat volt (egy informatikus visszajelzése), és az ő észrevétele indította az auditot.</td></tr>
+<tr><td>Mért eredmény</td><td>Az audit hét túlállítást talált, amelyek addig átmentek a modellen és a szerzői jóváhagyáson (például: „a kifelejtett szabály nem okoz kárt”, „igazolt”). Tehát a gyakorlat azt mutatta, amit a tézis állít: a modell kimenetét kapu nélkül nem szabad elfogadni, és a kapunak a szerzőtől és a modelltől független félnél kell lennie.</td></tr>
+</table>
+
+<h2>5. Amit nem tudunk</h2>
+<p>Nem tudjuk, hogy a szerző a generált kódból és bizonyító szkriptekből mennyit olvasott át soronként. Ezt a szerző mondja ki. A hitelességet nem a „nem olvastam el” vagy az „elolvastam” mondat adja, hanem az, hogy a mérések újra lefuttathatók (<code>python -B proba/teszt_kapu.py</code> és a többi <code>.py</code> fájl, a Studio élő futtatása), és hogy bárki szétszedheti.</p>
+
+<p style="margin-top:1.4rem"><a class="btn" href="index.html">Kezdőlap</a><a class="btn" href="szotar.html">Szószedet</a><a class="btn" href="tanulmany.html">Tanulmány</a></p>
+</main>
+</body>
+</html>

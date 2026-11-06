@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A határ alkotmánya: szintek, életképesség és metanyelv</title>
+<style>
+:root{--bg:#f6f4ee;--fg:#1d2a2c;--muted:#556569;--card:#fff;--line:#d8d4c6;--accent:#0f766e;--accent-soft:#d9efec}
+@media (prefers-color-scheme: dark){:root{--bg:#101719;--fg:#e8efee;--muted:#9fb0b3;--card:#172123;--line:#2a393c;--accent:#4fd1c5;--accent-soft:#173533}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif;line-height:1.6;font-size:1.05rem}
+main{max-width:46rem;margin:0 auto;padding:2rem 1.2rem 4rem}
+h1{font-size:2rem;line-height:1.2;margin:.2rem 0 .3rem}
+h2{font-size:1.35rem;color:var(--accent);margin:2.2rem 0 .6rem;font-family:system-ui,"Segoe UI",sans-serif}
+.by{color:var(--muted);font-family:system-ui,"Segoe UI",sans-serif;font-size:.9rem;margin:0 0 1rem}
+.dl{display:inline-block;font-family:system-ui,"Segoe UI",sans-serif;font-weight:700;font-size:.9rem;color:var(--bg);background:var(--accent);text-decoration:none;border-radius:.4rem;padding:.4rem .9rem;margin:0 .4rem 1.2rem 0}
+p{margin:.6rem 0}
+ul,ol{padding-left:1.4rem}
+li{margin:.3rem 0}
+code{font-family:Consolas,"Cascadia Mono",monospace;font-size:.88em;background:var(--accent-soft);padding:.05em .3em;border-radius:.25em;word-break:break-word}
+.tw{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-family:system-ui,"Segoe UI",sans-serif;font-size:.88rem;background:var(--card);border:1px solid var(--line)}
+th,td{padding:.45rem .6rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--accent-soft)}
+tr:last-child td{border-bottom:0}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>A határ alkotmánya: szintek, életképesség és metanyelv</h1>
+<p class="by">Szőke László · 2026. október 30. · frissítve: 2026. november 6. · közreműködés: Claude (Anthropic) · a hivatkozások ellenőrizve: 2026. november 1. (az új nevek forrásai: 2026. november 6.)</p>
+<a class="dl" href="tanulmany.pdf">Letöltés: PDF</a><a class="dl" href="index.html" style="background:var(--card);color:var(--accent);border:1px solid var(--accent)">← Vissza</a>
+<h2>Összefoglaló</h2>
+<p>A rendszer biztonságos kimenete kikényszeríthető kívülről, a belső szabályok ismerete nélkül, egy kijelölt határon és kimondott előfeltevések mellett; több szinten ehhez minden szintnek saját alkotmány kell, és a bizonyítás a metanyelven történik.</p>
+<ul>
+<li><strong>Egy szinten</strong> a kapu-tétel két esetből bizonyítható: a kimenet mindig a megengedett halmazban marad, bármi van a dobozban.
+</li>
+<li><strong>A sejtek helyi szabályaiból nem következik a közös szabály</strong> (ellenpélda: 4 + 5 &gt; 8). Kvóta-szerződéssel következik (bizonyított), de csak ha minden szinten minden kapu áll.
+</li>
+<li><strong>A közösségi életképesség</strong> lehetetlen lehet (3-3-3 minimum, 8 készlet), ilyenkor az alkotmánynak előnyt kell kimondania: értékválasztás, nem matematika.
+</li>
+<li><strong>Az alkalmazkodás sebessége</strong> nem lehet egyetlen szereplőnél összpontosítva (koncentrációs korlát, bizonyítva).
+</li>
+<li><strong>A metanyelv</strong> a szabályokról állít, nem parancs: azért használható a <code>.bio</code>-ra, mert az eldönthető, és a szintek rétegezése elkerüli az önhivatkozást.
+</li>
+<li>Egy eszközön (MetaSpace Studio) a lánc végigvihető, mérve: leírás, gépi ellenpélda, kapu három nyelven, igazolási dosszié. A gép a hiányzó szabályt csak megnevezett veszélynél találja meg, és a kapu csak a kijelölt határon kötelez.
+</li>
+</ul>
+<p><strong>Gyakorlati következmény (vibe-coding).</strong> Ha a programot mesterséges intelligencia írja, a programnyelv ismerete nélkül is garantálható, hogy a világ csak megengedett hatást kap, feltéve hogy a hatást kapu kényszeríti ki, a rendszeren kívül. Nem spórolható meg a szakterület ismerete (mi a megengedett), és a kapu nem biztosítja, hogy a doboz valamit meg is tesz.</p>
+<p><strong>Amit nem állítunk:</strong> hogy a <code>.bio</code> a világ törvénykönyve, hogy a modell a valóság, vagy hogy a cél helyessége bizonyítható. A „100%” itt azt jelenti, hogy minden előfeltevés ki van mondva, és a következtetés ezekből szükségszerű.</p>
+<p><strong>Hatókör és szerénység (2026-11-06).</strong> (1) A kapu-tétel egyszerű lemma: egy ellenőrzés és egy tartalék érték. Nem új: a szakirodalom futásidejű kikényszerítésnek (Schneider, 2000), biztonsági pajzsnak (Alshiekh és mások, 2018), Simplex-architektúrának (Sha, 2001) és referencia-figyelőnek (Anderson, 1972) hívja. (2) A kapu a <strong>biztonságot</strong> (a kimenet nem lép ki E-ből) garantálja, a <strong>helyességet</strong> (a program el is végzi a dolgát) nem; a futásidejű őrök általában csak biztonsági tulajdonságot tudnak kikényszeríteni (Schneider, 2000; Lamport, 1977). (3) Időben összefüggő szabálynál (például az esés sebessége) a tétel egyetlen értékre nem elég: a biztonságos értékre cserélés átmenete is számít (a 40-ről 60-ra ugrás sérti a 2/mp szabályt; lásd az életképesség-táblát). (4) A nyelv–program hasonlat <strong>szerkezeti analógia</strong>, nem izomorfia és nem bizonyíték: a nyelvtan leírás, a kód ok. (5) Az eszköz (MetaSpace Studio) szerzője a tanulmány szerzője; független ellenőrzése nincs.</p>
+<p><strong>Közreműködés (2026-11-06).</strong> A tanulmány és a hozzá tartozó előadás-anyag Claude-dal, az Anthropic nyelvi modelljével közösen készült. A tézist, a filozófiai keretet, a MetaSpace-eszközt, a döntéseket és a felelősséget a szerző adta; a szöveg és a kód nagy részét a modell fogalmazta és írta. A főelőadást és a kiegészítőt a szerző dianként hagyta jóvá; a 2026. november 6-i átdolgozás (szószedet, jegyzetek, ez a bővítés, javítások) a szerző irányával, de diankénti jóváhagyás nélkül készült. A szakma szerint (COPE, ICMJE) az MI nem lehet szerző, a használatát közzé kell tenni, a felelősség az emberé. A szerző a megrendelő és felelős szerkesztő, a modell a generátor; ez nem tiszta vibe-coding, mert a szerző specifikált, irányított és jóváhagyott. A munka maga is próbája a tételnek: a megengedett halmazt (P1) az ember adta, de független kapu (P4) nem volt, a modell a saját korábbi kimenetét auditálta, és az audit hét túlállítást talált, amelyek addig átmentek a modellen és a jóváhagyáson; a független kapu egy külső emberi bírálat volt. Hogy a szerző a generált kódból mennyit olvasott át soronként, azt a szerző mondja ki. Részletek: kozremukodes.html.</p>
+<h2>Szószedet</h2>
+<p>Minden fogalom egyetlen jelentésben szerepel a dokumentumban. A szószedet azt is megmondja, honnan jön a szó (filozófia, nyelv, biológia), mi a bevett informatikai neve, és hol nem szabad szó szerint érteni. A hasonlatok szerkezeti analógiák: szemléltetnek, nem bizonyítanak. Ugyanez a szószedet külön oldalon is elérhető (szotar.html).</p>
+<div class="tw"><table>
+<tr><th>Kifejezés</th><th>Itt jelentése</th><th>Bevett informatikai név (és eredet)</th><th>Nem azonos azzal / hol sántít</th></tr>
+<tr><td>Rendszer</td><td>A világ egy elkülönített része, amelynek van határa.</td><td>komponens; szolgáltatás; program a környezetével. Eredet: rendszerelmélet.</td><td>nem a világ egésze (annak nincs külseje, ezért nincs hová kaput állítani)</td></tr>
+<tr><td>Határ</td><td>Azon változók összessége, amelyeken át a program és a környezete egymásra hat (pacemakerben: a kimenő pulzus).</td><td>interfész; bizalmi határ (trust boundary). Eredet: rendszerelmélet (Ashby, Bernard); biológia (sejthártya).</td><td>nem a program fizikai burka; nem a teljes világ (annak nincs külseje)</td></tr>
+<tr><td>Doboz</td><td>A program belseje, amelyről semmit sem tételezünk fel.</td><td>megvalósítás (implementáció); fekete doboz (black box). Eredet: rendszerelmélet (fekete doboz).</td><td>nem azt állítjuk, hogy ismerhetetlen, hanem azt, hogy a bizonyítás nem használja fel</td></tr>
+<tr><td>Megengedett halmaz (E)</td><td>A határ azon értékeinek halmaza, amelyeket a szabály megenged (pacemakerben: 40–165 ütés/perc).</td><td>biztonsági burkoló (safe set, safety envelope); engedélyezési lista (allowlist). Eredet: matematika (halmaz).</td><td>nem az optimális sáv; nem az összes lehetséges érték</td></tr>
+<tr><td>Optimális sáv</td><td>E kitüntetett része: a cél tartománya (-tól -ig).</td><td>üzemi tartomány (operating range) a biztonsági burkolón belül. Eredet: szabályozáselmélet.</td><td>nem egyetlen pont; az E-nél szűkebb, és más kérdés: a hasznosság, nem a biztonság</td></tr>
+<tr><td>Kapu</td><td>A határon álló, a programtól független őr: a megengedett értéket átengedi, a többit előre kijelölt biztonságos értékre cseréli.</td><td>kimeneti őr: futásidejű figyelő (runtime monitor), biztonsági pajzs (safety shield), kimenő szűrő (egress filter). Eredet: saját szó.</td><td>nem tűzfal (az főleg a bejövő forgalmat szűri); nem teszt; nem a program belsejéről dönt, csak a kimenetről</td></tr>
+<tr><td>Biztonságos érték (s)</td><td>Az E-nek előre kijelölt eleme, amelyre a kapu cserél (pacemakerben: 60 ütés/perc).</td><td>biztonságos állapot (safe state); tartalék érték (fallback); hibabiztos állapot (fail-safe). Eredet: saját szó.</td><td>időben összefüggő szabálynál az s-hez vezető átmenet is számít: 150-ről 60-ra ugrani sérti a „legfeljebb 2 ütés/perc/mp” szabályt</td></tr>
+<tr><td>Hatás és ok</td><td>A hatás: ami a határon kilép és a világot éri. Az ok: a parancs vagy a belső döntés, amely ezt kiváltotta. A kapu a hatást ítéli meg.</td><td>kimenet-alapú ellenőrzés (utófeltétel, postcondition) szemben a bemenet- vagy kódalapú ellenőrzéssel. Eredet: okságfilozófia.</td><td>a „hatás” itt a határon mérhető kimenet, nem a világ minden következménye</td></tr>
+<tr><td>Zárt világ elve</td><td>A kapu azt sorolja fel, ami megengedett. Ami a szabályban nincs, az a határon át nem jut ki.</td><td>alapértelmezett tiltás (default-deny); engedélyezési lista (allowlist); hibabiztos alapértelmezés (fail-safe defaults). Eredet: logika (Reiter, 1978).</td><td>nem tiltólista (az kifelejti, amire nem gondoltunk); nem a fizikai világ tulajdonsága</td></tr>
+<tr><td>Mellékút</td><td>Minden út, amelyen a hatás a kapu megkerülésével jut ki.</td><td>megkerülés (bypass); a teljes közvetítés hiánya (complete mediation, Saltzer–Schroeder, 1975). Eredet: saját szó.</td><td>a kapu-állítás csak akkor érvényes, ha nincs mellékút: ezt a rendszer szintjén kell kikényszeríteni</td></tr>
+<tr><td>Megkerülhetetlenség (rendszermag-szint, DCC Ring 0)</td><td>A kapu kikényszerítése a rendszermagban, hogy a program ne tudja kijátszani.</td><td>referencia-figyelő (reference monitor, Anderson, 1972): mindig meghívott, kijátszhatatlan, ellenőrizhető. Eredet: MetaSpace (DCC).</td><td>mért állapot (a védelmi ledger szerint): fájlírásra, egy eldobható virtuális gépen (Linux 6.1, 2026-08-07-i építés); nincs üzembe helyezve; root ellen nem véd; független ellenőrzés nincs</td></tr>
+<tr><td>Tudni-hogyan és tudni-hogy</td><td>Tudni-hogyan: helyesen cselekedni a szabály kimondása nélkül. Tudni-hogy: a szabályt kimondani.</td><td>implicit tudás szemben a specifikációval. Eredet: filozófia (Ryle, 1949).</td><td>a kettő nem zárja ki egymást; a nyelvtan nélkül is helyesen beszélünk, de ettől a nyelvtan nem felesleges</td></tr>
+<tr><td>Hallgatólagos tudás</td><td>Amit tudunk, de nem tudunk szabályként kimondani (a „Látom a kutyát” helyességét felismerjük).</td><td>felismerő (osztályozó, oracle) szemben az előállítóval (generátorral). Eredet: filozófia (Polanyi, 1966).</td><td>a kapunak felismerni kell a helyeset, nem előállítani; ezért elég egy halmaz-ellenőrzés, nem kell hozzá a program ismerete</td></tr>
+<tr><td>Szerkezeti analógia</td><td>Két terület hasonló szerkezetű: a megfeleltetés a viszonyokra áll, nem a részletekre. Szemléltet, nem bizonyít.</td><td>Eredet: filozófia (analógia, szerkezetleképezés).</td><td>nem izomorfia (az kölcsönösen egyértelmű, szerkezetmegőrző leképezés); legfeljebb részleges homomorfia. A nyelvtan leírás, a kód ok: ez az eltérés</td></tr>
+<tr><td>Többszörös megvalósíthatóság</td><td>Ugyanaz a helyes viselkedés többféle belsővel is létrejöhet.</td><td>interfész és megvalósítás szétválasztása. Eredet: elmefilozófia (Putnam, Fodor).</td><td>a helyes viselkedés a kimeneten ítélhető meg; a belső ettől független (de a belső okozza a viselkedést)</td></tr>
+<tr><td>A beszélőközösség mint kapu</td><td>A gyerek a kimenetén át tanul: a közösség kijavítja. A belsejét senki nem vizsgálja.</td><td>külső visszacsatolás; kimeneti ellenőrzés (output validation). Eredet: nyelvelsajátítás.</td><td>a közösség sem tévedhetetlen; a nyelvnél nincs kimondott E, a pacemakernél van</td></tr>
+<tr><td>Alkotmány</td><td>A határra vonatkozó, véges, kimondott, megszeghetetlen szabályok: a megengedett halmaz és a vészállapot.</td><td>invariáns (mindig fennálló feltétel); biztonsági tulajdonság; specifikáció. Eredet: jog- és politikafilozófia (hasonlat).</td><td>metafora: a pontos fogalom az invariáns. Az alkotmány azt mondja meg, mi nem történhet meg; a törvény (leírás) azt, mi történik</td></tr>
+<tr><td>Törvény (leíró)</td><td>A működés leírása: mi történik (a glükóz lebomlik).</td><td>modell; viselkedésleírás. Eredet: természettudomány.</td><td>nem előírás; ez az alkotmány szerepe</td></tr>
+<tr><td>Tökéletes</td><td>A kimenet minden elérhető helyzetben E-ben van. A célhoz viszonyított teljesség.</td><td>biztonsági tulajdonság teljesül (safety). Eredet: arisztotelészi filozófia (teleios).</td><td>nem hibátlan program; nem optimális; nem azt jelenti, hogy a program el is végzi a dolgát</td></tr>
+<tr><td>Százszázalékos</td><td>Minden előfeltevés ki van mondva, és a következtetés ezekből szükségszerű.</td><td>feltételes garancia (assume–guarantee). Eredet: logika.</td><td>nem azt jelenti, hogy a valóságban semmi nem romolhat el</td></tr>
+<tr><td>Biztonság (safety)</td><td>„Valami rossz soha nem történik meg”: például a kimenet soha nincs E-n kívül.</td><td>biztonsági tulajdonság (safety property). Eredet: számítástudomány (Lamport, 1977; Alpern–Schneider, 1985).</td><td>ezt a kapu kikényszeríti. A futásidejű őrök általában csak ilyen tulajdonságot tudnak kikényszeríteni (Schneider, 2000)</td></tr>
+<tr><td>Élősség (liveness)</td><td>„Valami jó előbb-utóbb megtörténik”: a pacemaker ténylegesen ütemet ad.</td><td>élősségi tulajdonság (liveness property). Eredet: számítástudomány (Lamport, 1977; Alpern–Schneider, 1985).</td><td>ezt a kapu nem garantálja: egy mindig 60-at adó program is átmegy rajta</td></tr>
+<tr><td>Helyesség</td><td>A program azt teszi, amire való.</td><td>funkcionális helyesség (functional correctness). Eredet: informatika.</td><td>nem azonos a biztonsággal; ehhez a szakterület ismerete és tesztelés kell</td></tr>
+<tr><td>Lemma („kapu-tétel”)</td><td>Ha y eleme E-nek, a kapu átengedi, különben s-t ad, s pedig eleme E-nek: a kimenet mindig E-ben marad.</td><td>a futásidejű kikényszerítés alapállítása; egy ellenőrzés és egy tartalék érték. Eredet: matematika.</td><td>egyszerű, nem ez az újdonság. Időben összefüggő szabálynál indukció és életképesség kell hozzá</td></tr>
+<tr><td>Bizonyított</td><td>A modellre és a kimondott előfeltevésekre igaz.</td><td>formálisan ellenőrzött (adott modellre). Eredet: logika.</td><td>három különböző dolgot is jelent, ne keverd: (1) matematikai lemma, (2) Z3 PASS, vagyis a szabályok ellenőrzése, (3) mért futás. Egyik sem azt jelenti, hogy a valóságban igaz</td></tr>
+<tr><td>PASS / FAIL (Z3)</td><td>A szabályok ellentmondásmentesek-e, és kizárják-e a megnevezett veszélyt. FAIL esetén egy konkrét ellenpéldát kapunk.</td><td>SMT-megoldó eredménye (sat / unsat). Eredet: formális módszerek.</td><td>a szabályokat vizsgálja, a programot nem; a hiányzó, meg nem nevezett veszélyt nem találja meg</td></tr>
+<tr><td>Ellenpélda</td><td>Egy konkrét eset, amely az állítást megcáfolja (például 40 ütés/perc és 3 ütés/perc/mp esés).</td><td>ellenpélda (counterexample); az SMT-ben egy kielégítő modell. Eredet: logika.</td><td>nem statisztikai kivétel</td></tr>
+<tr><td>Veszély (HAZARD)</td><td>Egy megnevezett, elkerülendő helyzet. A gép azt vizsgálja, hogy a szabályok kizárják-e.</td><td>veszélyforrás (hazard). Eredet: biztonságtechnika.</td><td>a veszélyt az ember nevezi meg; amit senki nem nevezett meg, azt a gép nem ellenőrzi</td></tr>
+<tr><td>Specifikáció (.bio)</td><td>A határ leírása: jelek, szabályok, biztonságos állapot.</td><td>formális specifikáció; szerződés (contract). Eredet: informatika.</td><td>a specifikáció írása is programozás, de nem a megvalósításé; ezért mondjuk, hogy a megengedett halmazhoz a szakterület kell, a programnyelv nem</td></tr>
+<tr><td>Igazolási dosszié</td><td>A Studio által készített napló: a specifikáció lenyomata, az eredmények, a hatókör.</td><td>bizonyíték-csomag (assurance case) – de önmagunk készítette. Eredet: MetaSpace Studio.</td><td>nem tanúsítvány, nem független ellenőrzés</td></tr>
+<tr><td>Bizalmi mag</td><td>Az, amiben meg kell bíznunk: az ellenőrző és a kódgenerátor.</td><td>megbízható számítási alap (TCB). Eredet: biztonságtechnika.</td><td>ha az ellenőrző hibás, a bizonyítás sem megbízható (P4)</td></tr>
+<tr><td>Eldönthető</td><td>Véges lépésben mindig megadható az igen/nem válasz.</td><td>eldönthető (decidable). Eredet: számításelmélet.</td><td>nem azt jelenti, hogy gyors</td></tr>
+<tr><td>Életképesség (kiút-feltétel)</td><td>Bármely E-beli helyzetből van olyan következő lépés, amely E-ben tart, és onnan is van ilyen.</td><td>életképességi mag (viability kernel); visszaállíthatóság. Eredet: rendszerelmélet (Aubin).</td><td>nem az, hogy az állapot éppen E-ben van. Pacemakerben a 40→60 ugrás egy lépésben sérti a 2/mp szabályt</td></tr>
+<tr><td>Szint</td><td>A rendszerek rétege: az alsó szint rendszerei a felsőnek részei.</td><td>rétegzés; összetétel (composition). Eredet: rendszerelmélet.</td><td>nem rangsor. Nem azonos a Studio „fok” szavával</td></tr>
+<tr><td>Fok (1., 2., 3.)</td><td>A kikényszerítés erőssége a Studióban.</td><td>kikényszerítési erősség (enforcement tier). Eredet: MetaSpace Studio.</td><td>nem a rendszerek rétege (ez a „szint”)</td></tr>
+<tr><td>Garancia–feltevés</td><td>Az alsó szint garantál valamit, feltéve hogy a környezete teljesít valamit.</td><td>garancia–feltevés szerződés (assume–guarantee contract). Eredet: formális módszerek.</td><td>nem bizalom vagy hit</td></tr>
+<tr><td>Tárgynyelv és metanyelv</td><td>A tárgynyelven a szabályokat mondjuk ki (.bio); a metanyelven a szabályokról állítunk (például hogy ellentmondásmentesek).</td><td>specifikációs nyelv és ellenőrző (verifier). Eredet: logika (Tarski).</td><td>nem a tárgynyelv „fölötti parancs”</td></tr>
+<tr><td>Vibe-coding</td><td>A programot mesterséges intelligencia írja, az ember a kívánt viselkedést mondja el, a kódot nem olvassa végig.</td><td>MI-generált kód átnézés nélkül. Eredet: szleng (Karpathy, 2025).</td><td>nem azt jelenti, hogy a hatás ellenőrzése felesleges – éppen azt kell kikényszeríteni</td></tr>
+<tr><td>Szerző és MI viszonya</td><td>A szerző a megrendelő és specifikáló, a felelős szerkesztő; az MI a generátor és végrehajtó. Az ember adja a megengedett halmazt (P1), és viseli a felelősséget.</td><td>megrendelő és kivitelező; megbízó és ügynök (principal és agent); ember a körben (human-in-the-loop). Eredet: kiadói etika (COPE, ICMJE); szoftvermérnökség.</td><td>nem szerzőtárs: az MI nem lehet szerző, de a használatát közzé kell tenni. A tyúk–tojás kérdés akkor válik valódi problémává, ha az MI ellenőrzi az MI-t (nincs független kapu)</td></tr>
+<tr><td>Vibe-coder</td><td>Aki MI-vel íratja a programot, és a kódot nem olvassa végig.</td><td>specifikáló és jóváhagyó (az MI-asszisztált fejlesztésben). Eredet: szleng (Karpathy, 2025).</td><td>ebben a munkában a szerző nem tiszta vibe-coder: specifikált, irányított, a főelőadást és a kiegészítőt dianként jóváhagyta (a 2026-11-06-i átdolgozás kivételével)</td></tr>
+<tr><td>Független ellenőrzés</td><td>Az ellenőrző olyan féltől jön, aki sem a doboz (a kód) írója, sem a szabályt kimondó. Ebben a munkában nincs; csak egy külső emberi bírálat vizsgálta.</td><td>független ellenőrzés és validálás (IV&amp;V). Eredet: biztonságtechnika (a bizonyítás függetlensége).</td><td>az MI-vel végzett önellenőrzés nem független: ugyanaz a modellcsalád hasonló hibákat követhet el</td></tr>
+</table></div>
+<p>Az utolsó sor különösen fontos: a „bizonyított” a modellre vonatkozik. Hogy a modell a valóság, az megfigyelés kérdése.</p>
+<h2>Leírás és megszabás: a nyelvtan és a sejthártya</h2>
+<p>A törvény azt mondja meg, mi történik; az alkotmány azt, mi nem történhet meg. A <code>.bio</code> az utóbbi nyelve.</p>
+<p>Az, aki az anyanyelvét nyelvtan nélkül beszéli, a viselkedést tudja, a szabályt nem. Ryle ezt „tudni, hogyan” és „tudni, hogy” különbségének nevezte, Polanyi hallgatólagos tudásnak. A nyelvtan utólagos leírás: a nyelv megelőzte.</p>
+<p><strong>A hasonlat pontos állítása.</strong> Ebből nem az következik, hogy nincs szükség nyelvtanra, hanem az, hogy a helyes viselkedéshez van másik út is: a kimenetet ítéli meg valaki, nem a belsőt (többszörös megvalósíthatóság). A gyerek nem a nyelvtanból tanul: a beszélőközösség kijavítja, vagyis a közösség egy külső kapu a kimeneten. A kapunak a helyeset <strong>fel kell ismernie</strong>, nem előállítania: a beszélő bármely mondatról megmondja, hogy jól hangzik-e, a szabályt viszont nem tudja kimondani. A pacemakernél a felismerés egy intervallum. A megfeleltetés tehát a <strong>közösség ↔ kapu</strong> viszonyra erős; a <strong>nyelvtan ↔ forráskód</strong> viszonyra gyenge, mert a nyelvtan utólagos leírás, a kód pedig a viselkedés oka. Ezért szerkezeti analógiáról beszélünk, nem izomorfiáról.</p>
+<p>A biológia ugyanezt a szerkezetet mutatja. Bernard a belső környezet állandóságát, Ashby (1952) az élőlény <em>lényegi változóit</em> írta le, amelyek csak meghatározott határok között maradhatnak. Maturana és Varela szerint az élő az a rendszer, amely a saját szerveződését tartja fenn. A sejt életének kezdete egy határ: a sejthártya, amely megmondja, mi számít belülnek és mi kívülnek. Az élet tehát maga alkotmány, és a célja (a fennmaradás) nem választott, hanem adott.</p>
+<p>Az informatikában egy interfész-szerződés (típus, jogosultság, tűzfalszabály) ugyanúgy nem a program belsejét írja le, hanem azt szabja meg, mi léphet át a határon.</p>
+<div class="tw"><table>
+<tr><th>Terület</th><th>Ami működik</th><th>Megszabás (határ)</th><th>Róla szóló nyelv (metanyelv)</th></tr>
+<tr><td>Nyelv</td><td>a beszéd</td><td>a nyelvi norma: mi helyes mondat</td><td>a nyelvtan</td></tr>
+<tr><td>Biológia</td><td>a sejt anyagcseréje</td><td>a lényegi változók határai, a sejthártya</td><td>az élettan</td></tr>
+<tr><td>IT</td><td>a program futása</td><td>az interfész-szerződés</td><td>a specifikáció és a bizonyító</td></tr>
+</table></div>
+<p>Következmény: a viselkedés a szabály ismerete nélkül is lehet helyes, és ezért kikényszeríthető kívülről a biztonságos kimenet.</p>
+<h2>A tétel egy szinten</h2>
+<p><strong>Tétel.</strong> Bármely ismeretlen belsejű dobozra, a határon álló kapuval együtt, a kimenet minden elérhető helyzetben a megengedett halmazban (E) marad.</p>
+<p><strong>Bizonyítás.</strong> Tetszőleges bemenetnél a doboz valamilyen y kimenetet ad. Két eset van, harmadik nincs. Ha y eleme E-nek, a kapu átengedi, tehát a kimenet E-ben van. Ha y nem eleme E-nek, a kapu a biztonságos s értéket adja, és s eleme E-nek. A bizonyítás a dobozról semmit nem használ fel: a „minden dobozra” azt jelenti, hogy a tétel akkor is igaz, ha a doboz belsejéről semmit sem tudunk.</p>
+<p>Három pontosítás teszi hiánytalanná:</p>
+<ul>
+<li>Ha a doboz nem válaszol, az is kimenet: az időkorlát lejártakor a kapu s-t ad.
+</li>
+<li>Ha az elvárás a lépések sorrendjére is vonatkozik (például a változás sebességére), a bizonyítás teljes indukcióval megy, és kell hozzá az <strong>életképesség</strong>: bármely E-beli helyzetből van olyan következő lépés, amely E-n belül tart, és onnan is van ilyen, és így tovább (nincs zsákutca).
+</li>
+<li>A bizonyításokat ellenőrző program (Z3) csak az elvárást vizsgálja (ellentmondásmentes-e, van-e zsákutca), a dobozról nem állít semmit.
+</li>
+</ul>
+<p><strong>Példa: pacemaker</strong> (<code>pacemaker.bio</code>: pulzus 40 és 165 között, változás legfeljebb 2 / mp, vészállapot 60).</p>
+<div class="tw"><table>
+<tr><th>Életképesség lépcsője</th><th>Eredmény</th></tr>
+<tr><td>Nincs zsákutca: bármely állapotból van tovább</td><td>bizonyított (triviálisan: az érték tartása mindig lehetséges)</td></tr>
+<tr><td>A vészállapot (60) egy lépésben elérhető minden állapotból</td><td><strong>hamis:</strong> 40-ről 60-ra ugrás 20 egység, a határ 2</td></tr>
+<tr><td>A vészállapotig legfeljebb ennyi másodperc kell</td><td>bizonyított: 10 mp, ha csak a gyorsulás korlátozott; 53 mp, ha a lassulás is</td></tr>
+</table></div>
+<p>A gyakorlati tanulság: a specifikáció a saját vészállapotával is ellentmondhat, és hiányzik belőle a határidő. Ezt a gép kimutatja.</p>
+<p><strong>Gépi megvalósítás.</strong> A „ha túl nagy, a felső határ; ha túl kicsi, az alsó” alakú kapu átengedi a „nem szám” értéket (a gép így jelzi az értelmezhetetlen eredményt), mert vele minden összehasonlítás hamis. A javított kapu (csak a pozitívan igazolt értéket engedi át, különben s-t ad) mind a 2^64 bitmintára bizonyított.</p>
+<p><strong>Előfeltevések</strong>, amelyeken a tétel áll:</p>
+<ul>
+<li><strong>P1:</strong> a cél (E) helyes. Értékválasztás, nem bizonyítható. A biológiában adott (fennmaradás).
+</li>
+<li><strong>P2a:</strong> nincs mellékút, minden hatás átmegy a kapun.
+</li>
+<li><strong>P2b:</strong> a határ teljes: a lényeges változók láthatók rajta, és a határon át be lehet avatkozni.
+</li>
+<li><strong>P3:</strong> a fizika és a környezet együttműködik, köztük a környezet változási sebessége.
+</li>
+<li><strong>P4:</strong> az ellenőrző és a fordító program helyes (bizalmi mag). Ha nem, a bizonyítás sem megbízható.
+</li>
+</ul>
+<h2>A gyakorlatban: vibe-coding kapuval</h2>
+<p><strong>Fő tétel.</strong> A vibe-codinghoz (a programot mesterséges intelligencia írja) nem kell ismerni a programnyelvet, ha nem az okot, hanem a hatást kényszerítjük ki, a rendszeren kívül, kapuval. Ez a kapu-tétel közvetlen következménye: a tétel a doboz belsejéről semmit nem tételez fel, tehát arról sem, hogy ki és hogyan írta.</p>
+<ol>
+<li>Te mondod ki, mi a megengedett (E).
+</li>
+<li>A gép írja a kódot (a doboz). Nem olvassuk el, elszigetelten fut.
+</li>
+<li>A kapu az E-ből készül, ellenőrzött generátorral, és a dobozon kívül áll.
+</li>
+<li>A világ csak megengedett hatást kap.
+</li>
+</ol>
+<p><strong>Hasonlat: a biztosíték.</strong> A készülék a doboz, a felvett áram a javaslat, a biztosíték a kapu, a legfeljebb 16 amper az E, a megszakadt áramkör (0 amper) a biztonságos érték. Két eltérés: a biztosíték nem pillanatnyi (a tűrést E-be kell építeni), és ha valaki dróttal áthidalja, az mellékút (P2a).</p>
+<p><strong>A zárt világ elve.</strong> A kapu azt sorolja fel, ami megengedett, nem azt, ami tilos. Ami a szabályban nincs, az a határon nem létezik: nincs csatorna, amelyen hatást fejthetne ki. A tiltólistás kapu átengedte a „nem szám” értéket, amire nem gondoltunk; az engedélyezési listás (csak az megy át, ami igazolt) mind a 2^64 esetre bizonyított. A „nem létezik” csak a határra igaz (P2a, P2b), a fizikai világra nem. Aszimmetria: ha az engedélyezési listából kimarad egy csatorna vagy érték, az azt okozza, hogy valami nem működik (látható, pótolható), nem azt, hogy kár keletkezik. Fordítva ez nem igaz: ha egy engedélyezett jelre hiányzik a korlát (például az esés sebessége), kár lehet; ezt a gép csak megnevezett veszélynél találja meg (lásd az eszközös szakaszt).</p>
+<p><strong>Mit ad a kapu, és mit nem.</strong></p>
+<ul>
+<li>Amit a specifikáció a kimenetek halmazaként kimond, az a hatásban is teljesül. A hasznosságnak az a része bizonyított, amely a határon tartományként kifejezhető (az optimális sáv is ilyen, ha a környezet nem túl gyors); a többi nem.
+</li>
+<li>Nem kényszeríthető ki a pozitív kötelesség: hogy a doboz valamit meg is tegyen. Ha nem tesz semmit, az E-ben van. Ez hiány, nem veszély, és kimeneti teszttel kiderül.
+</li>
+<li>A szabály helyessége (P1) módszerfüggetlen: kézi kódolásnál ugyanúgy kell. A vibe-coding annyit változtat, hogy a kód helyessége kiesik a bizalmi magból.
+</li>
+<li>Az, hogy mi a megengedett, nem spórolható meg. Ez a szakterület ismerete és a határ pontos, formális nyelven történő kimondása; nem a megvalósítás programozása.
+</li>
+</ul>
+<p><strong>A soronkénti olvasás nem garancia.</strong> Ha valaki soronként írja vagy olvassa a kódot, a bizalmi mag a teljes kód. Vibe-codingnál a bizalmi mag a kapu és az ellenőrző, amely kicsi és véges. Ez a bizalmi mag méretéről szól, nem a hibák valószínűségéről.</p>
+<h2>Egy eszközön végigvíve: a MetaSpace Studio</h2>
+<p>A lánc egy eszközön végigvihető (leírás, gépi ellenpélda, kapu három nyelven, igazolási dosszié), de a gép csak azt találja meg, amit megneveztünk, és a kapu csak a kijelölt határon kötelez. A méréseket 2026-10-30-án az élő eszközön végeztük (MetaSpace Studio 2.8), a pacemaker példán. Az eszköz saját tesztjei (144) mind zöldek.</p>
+<p><strong>1. A hiányzó szabály csak megnevezett veszélynél derül ki.</strong> Ugyanaz a pacemaker, három futtatás:</p>
+<div class="tw"><table>
+<tr><th>Futtatás</th><th>Bemenet</th><th>Eredmény</th></tr>
+<tr><td>1</td><td>az eredeti <code>pacemaker.bio</code>, veszély megnevezése nélkül</td><td>megfelel; a hiányzó lefelé korlátot nem látja</td></tr>
+<tr><td>2</td><td>az eredeti + veszély: a kimenő ütemszám gyorsabban esik 2 ütés/perc/s-nál</td><td>hibát jelez: rés a specifikációban; ellenpélda: 40 ütés/perc, esés 3 ütés/perc/s, minden szabály teljesül, mégis veszély</td></tr>
+<tr><td>3</td><td>a javított fájl + ugyanaz a veszély</td><td>megfelel; a veszélyt a lassulás-korlát bizonyítottan kizárja</td></tr>
+</table></div>
+<p>Tanulság: a gép a lyukat akkor találja meg, ha a veszélyt megnevezzük. A veszélyek felsorolása szakterületi tudás, vagyis a P1 gyakorlati alakja.</p>
+<p><strong>2. Egy specifikáció, három nyelv, nem teljesen azonos viselkedés.</strong> A javított specifikációból Python, ipari vezérlő és C kapu generálódik, mindháromban ugyanaz az öt szabály. A viselkedés eltér: a Python kernel biztonságos értékre vált (60 ütés/perc), az ipari vezérlő és a C változat csak hibát jelez és reteszel, mert a pacemaker-fájl nem nevez meg kimeneti jelet. A határidőt és az elsőbbséget a Python csak értékként tárolja, nem kényszeríti ki. A C-kimenet ezen a gépen nincs lefordítva.</p>
+<p><strong>3. A nem-szám és a kerekítés.</strong> A szabályok pozitív alakúak („legalább 40 és legfeljebb 165”), a nem-szám pedig minden összehasonlításban hamis, ezért a generált kernel blokkolja (mérve: a nem-szám pulzus mindkét korlátot sérti, a 60 átmegy). A kimondott érvényességi feltétel (<code>is_valid</code>) Pythonban és C-ben generálódik; az ipari vezérlőre nem hordozható, ott külön logikai jel kell. A kerekítésnél a 0,1 + 0,2 ≤ 0,3 egzakt számolásban nem korlátoz (figyelmeztetés), 64 bites lebegőpontos számolásban soha nem teljesül (hibát jelez): a bizonyításnak ugyanazt a számábrázolást kell használnia, mint a gépnek.</p>
+<p><strong>4. Az igazolási dosszié.</strong> Rögzíti a specifikáció ujjlenyomatát (a szöveg számított azonosítóját), az időt és az eszköz verzióját, veszélyenként a kizáró szabályt, és saját hatókör-szakaszát. Nem tanúsítvány és nem független ellenőrzés (P4). A példában a jelek típusa és tartománya ismeretlen (a lapos nyelvtan nem ad meg tartományt), ami gyengébb állítás, a biztonságos állapot pedig nem ellenőrizhető.</p>
+<p><strong>Ismétlés típusos specifikációval (2026-11-01, Studio 2.12).</strong> Ugyanezt a három futtatást megismételtük a jeleket iránnyal, típussal, egységgel és tartománnyal leíró (típusos) fájlformátumban: az eredmény ugyanaz (megfelel, hiba a megnevezett veszélynél, megfelel a javítás után), a dosszié viszont már kitölti a jelek táblázatát, és a biztonságos állapotot is ellenőrzi. Mérési megfigyelés: a meg nem adott kimenet a biztonságos állapotban 0-ra áll, ami az intervallum-szabályt (legalább 250 ms) sértette, miközben a biztonságos állapot ellenőrzése megfelelt; ezért a biztonságos állapotban minden szabályozott kimenetet ki kell mondani. A fenti 1–4. pont megállapításai a régi, jelek nélküli formátumra vonatkoznak.</p>
+<p><strong>5. Meglévő programból váz.</strong> Az eszköz egy meglévő program szerkezetét (szenzor, aktuátor, talált számok) kiolvassa, de a limiteket és a veszélyt az embernek kell megadnia, nem a kódból örökölni. Saját fájljainkon az import csak részben ismerte fel a jeleket, mert névmintákra épít.</p>
+<p><strong>Mit nem tud (még).</strong> Nincs teljesség (P1: a veszélyeket és a szabályokat az ember mondja ki), nincs megkerülhetetlenség (P2a: a kapu csak a kijelölt határon kötelez; az operációs rendszer által kikényszerített fok (a kikényszerítés erőssége, nem a rendszerek szintje) Linuxon külön csomag, a hardverírás üres váz), és nincs független ellenőrzés (P4). A részletek a kiegészítő előadásban (<code>kiegeszito.html</code>) és az eszköz saját hatókör-dokumentumában vannak.</p>
+<h2>Szintek közötti kapcsolat</h2>
+<p>A sejtek helyi szabályaiból nem következik a közösség szabálya. A következtetéshez a közösségnek saját alkotmány kell, a sejteknek pedig ahhoz illő szerződés.</p>
+<p><strong>1. Helyi nem azonos a közössel.</strong> Két sejt közös készletből él, a készlet 8. Mindkettő betartja a saját szabályát (legfeljebb 5), mégis a Z3 ellenpéldát talált: 4 + 5 = 9 &gt; 8. A közösségi tulajdonság (emergencia) a sejtek szabályaiból nem vezethető le.</p>
+<p><strong>2. Garancia–feltevés.</strong> A közösség kvótát oszt (a kvóták összege legfeljebb a készlet), mindegyik sejt a saját kvótája alatt marad. Ebből következik, hogy a használat összege legfeljebb a készlet. Bizonyított 2, 3, 5 és 8 sejtre; tetszőleges számra az egyenlőtlenségek összeadásával.</p>
+<p><strong>3. A lánc ereje.</strong> Ha egyetlen sejt kapuja hiányzik, a közösségi garancia megdől (ellenpélda). A P2a előfeltevés tehát <strong>minden szinten</strong> külön teljesülnie kell.</p>
+<p><strong>4. Közösségi életképesség.</strong> Ha három sejtnek legalább 3-3-3 egység kell az élethez: 9 egységes készletből lehetséges az elosztás, 8-ból <strong>bizonyítottan minden elosztás kizárt</strong>. Ekkor a matematika nem dönt: az alkotmánynak először kell kimondania, kinek van előnye. Ez értékválasztás (P1), nem számítási kérdés.</p>
+<p><strong>5. Sebesség és koncentráció.</strong> Az ellátás egy lépésben 2-vel csökken (9-ről 7-re). Minden sejt lépésenként legfeljebb 1-gyel tud visszavenni, összesen hármal, ami több, mint 2. Mégis van ellenpélda: ha egy sejt 6,5-et használ (a többi 1 és 1,5), az összes visszavétel után is 7,5 marad. A <strong>koncentrációs korlát</strong> (egy sejt legfeljebb 4-et használhat) mellett a Z3 bizonyítja a megoldhatóságot. A korábbi „környezeti sebesség” feltétel tehát közösségi szinten egy második feltétellel egészül ki: <strong>az alkalmazkodási képesség nem lehet egyetlen szereplőnél összpontosítva</strong>. Ez a trösztellenes szabály formális megfelelője.</p>
+<div class="tw"><table>
+<tr><th>Vizsgálat</th><th>Állítás</th><th>Eredmény</th></tr>
+<tr><td>1</td><td>helyi szabályból következik a közös</td><td>ellenpélda</td></tr>
+<tr><td>2</td><td>kvóta + betartás ⇒ közös</td><td>bizonyított</td></tr>
+<tr><td>3</td><td>hiányzó kapu mellett is áll a közös</td><td>ellenpélda</td></tr>
+<tr><td>4</td><td>3-3-3 minimumhoz 8 elég</td><td>lehetetlen (bizonyított)</td></tr>
+<tr><td>5a</td><td>gyors csökkenés korlát nélkül</td><td>ellenpélda</td></tr>
+<tr><td>5b</td><td>gyors csökkenés koncentrációs korláttal</td><td>bizonyított</td></tr>
+</table></div>
+<h2>Metanyelv: miért használható a <code>.bio</code>-ra, és hogyan értendő</h2>
+<p>A <code>.bio</code> szabályai tárgynyelven szólnak a határról; a metanyelv az, amelyen e szabályokról állítunk. A különbség ugyanaz, mint a beszéd és a nyelvtan között, amelyből az egész gondolatmenet kiindult.</p>
+<p><strong>Mi a különbség?</strong> Tárgynyelven mondjuk: „a pulzus legfeljebb 165”. Metanyelven mondjuk: „ez a szabálygyűjtemény ellentmondásmentes”, vagy „ebből a két szabályból következik a közösségi szabály”. Tarski kimutatta, hogy egy kellően gazdag nyelv igazságfogalmát csak egy másik, gazdagabb nyelvben lehet pontosan meghatározni. A nyelv nyelvtanának leírása is metanyelv: a <code>.bio</code> esetében a nyelvtanleíró fájl a <code>.bio</code>-ról szól, nem <code>.bio</code>-ban íródott. A fájl jelenlegi (1.0) változata szűkebb nyelvet ír le, mint amelyet a <code>pacemaker.bio</code> használ.</p>
+<p><strong>Miért használható a </strong><strong><code>.bio</code></strong><strong>-ra? Négy ok:</strong></p>
+<ol>
+<li>A <code>.bio</code> szándékosan korlátozott (véges, eldönthető). Ezért a róla szóló állítások (van-e zsákutca, következik-e a közös szabály) a gép számára teljesen eldönthetők.
+</li>
+<li>A szintek kapcsolata maga is metanyelvi. A közösségi szabály a sejtek szabályainak <em>paramétereiről</em> szól (a kvóták összege), tehát alkotmány az alkotmányokról.
+</li>
+<li>A rétegezés elkerüli az önhivatkozás paradoxonát (Russell, Tarski): minden szint csak a nála alacsonyabb szintről állít.
+</li>
+<li>Kettéválasztja a szabály és a bizonyíték szerepét. A sejt a tárgynyelven él, a bizonyítás a metanyelven történik, ahogy az anyanyelvi beszélő a nyelvtantól függetlenül beszél.
+</li>
+</ol>
+<p><strong>Hogyan értendő?</strong> A metanyelvi állítás nem parancs a sejtnek, nem magasabb rendű hatalom, és nem része a tárgynyelvnek. Állítás a szabályokról, amelynek igazsága ellenőrizhető. A sejthez nem ad hozzá új képességet.</p>
+<p>A Gödel–Tarski-korlátok azokra a nyelvekre vonatkoznak, amelyek a saját mondataikat számokká tudják kódolni. A <code>.bio</code> ezt nem tudja, a róla szóló állításokhoz pedig a valós számok elmélete elegendő, amely eldönthető (Tarski). Ezért itt nem kell végtelen metanyelv-létrát felmászni.</p>
+<p><strong>Az ellenkező:</strong></p>
+<div class="tw"><table>
+<tr><th>Ellenérv</th><th>Minősítés</th></tr>
+<tr><td>Végtelen regresszus: ki ellenőrzi az ellenőrzőt? A Z3 is hibázhat.</td><td><strong>Áll részben.</strong> Az ellenőrzés tanúsítvánnyal egy kis, független programmal ellenőrizhető, a hibalehetőség egy szűk bizalmi magra szűkíthető, de nem szüntethető meg. Ez egy kimondott előfeltevés.</td></tr>
+<tr><td>Gödel–Tarski: egy elég erős, önmagát kikódolni tudó rendszer nem bizonyíthatja a saját ellentmondásmentességét, és a saját igazságát sem definiálhatja.</td><td><strong>Nem áll</strong> erre a nyelvre (nincs benne önkódolás). Ha bővítenénk, a rétegezés kötelező lenne.</td></tr>
+<tr><td>Pontatlan metanyelv: a magyar szöveg többértelmű lehet.</td><td><strong>Áll.</strong> Ezért van a szószedet, és a kritikus állítások gépi (Z3) alakban is megvannak.</td></tr>
+<tr><td>A metanyelv előbb kell, mint a tárgynyelv.</td><td><strong>Nem áll.</strong> A nyelv a nyelvtan nélkül is létezik; a sorrend történeti, nem logikai.</td></tr>
+</table></div>
+<h2>Ellenbizonyítás: a tagadás alakjai és a mérleg</h2>
+<p>A tézis szigorú tagadása megdőlt, de több gyengébb tagadás megmaradt, és ezek adják a hatókört. Minden vizsgálat ugyanazt a módszert követi: az állítás tagadását kérdezzük a géptől, és vagy konkrét ellenpéldát kapunk, vagy bizonyítást, hogy nincs.</p>
+<div class="tw"><table>
+<tr><th>#</th><th>Tagadás</th><th>Módszer</th><th>Eredmény</th><th>Következmény</th></tr>
+<tr><td>1</td><td>Van doboz és kapu, amelynél a kimenet kilép E-ből (valós számokon)</td><td>Z3</td><td>nincs ellenpélda</td><td>a tétel a modellben igaz</td></tr>
+<tr><td>2</td><td>Ugyanez gépi lebegőpontos számokon</td><td>Z3, 2^64 bitminta</td><td>naiv kapu: ellenpélda („nem szám”); javított: bizonyított</td><td>a megvalósítási rés egzakt ellenőrzéssel zárható</td></tr>
+<tr><td>3</td><td>A specifikáció a saját vészállapotával ellentmond</td><td>Z3</td><td>igen: az erős kiút-feltétel hamis</td><td>az életképességet vizsgálni kell</td></tr>
+<tr><td>4</td><td>A kapu csak biztonságot ad, optimumot nem</td><td>a nyelvtan tartományt ismer</td><td>nem áll, ha az optimum ismert tartomány</td><td>marad a környezeti sebességfeltétel (0,02 / mp bizonyított, 0,03 ellenpélda)</td></tr>
+<tr><td>5</td><td>A helyi szabályból következik a közös</td><td>Z3</td><td>ellenpélda</td><td>a szintnek saját alkotmány kell</td></tr>
+<tr><td>6</td><td>Hiányzó kapu mellett is áll a közös garancia</td><td>Z3</td><td>ellenpélda</td><td>P2a minden szinten</td></tr>
+<tr><td>7</td><td>A közösségi életképesség mindig biztosítható</td><td>Z3</td><td>8 készletből 3-3-3 minimummal lehetetlen</td><td>értékválasztás (P1)</td></tr>
+<tr><td>8</td><td>Gyors alkalmazkodás koncentráció nélkül is megoldható</td><td>Z3</td><td>ellenpélda; korláttal bizonyított</td><td>koncentrációs korlát</td></tr>
+<tr><td>9</td><td>A metanyelv végtelen regresszus / Gödel</td><td>érvelés</td><td>részben áll / nem áll</td><td>véges bizalmi mag, kimondva</td></tr>
+<tr><td>10</td><td>A valóságra vonatkozó 100%</td><td>Hume</td><td>nem bizonyítható</td><td>P3</td></tr>
+<tr><td>11</td><td>A specifikáció helyessége</td><td>–</td><td>nem bizonyítható</td><td>P1</td></tr>
+<tr><td>12</td><td>Nyílt végű változás: új változók jelennek meg (Kauffman)</td><td>érvelés</td><td>vitatott, nem tétel</td><td>a változólista egy adott határig érvényes</td></tr>
+<tr><td>13</td><td>Vibe-codinghoz ismerni kell a programnyelvet</td><td>érvelés a kapu-tételből</td><td>nem áll a hatás garantálására; a szakterület ismerete kell</td><td>a szabály helyessége (P1) módszerfüggetlen</td></tr>
+<tr><td>14</td><td>A soronkénti kódolás vagy olvasás biztonságosabb</td><td>érvelés</td><td>nem áll: ott a teljes kód a bizalmi mag, a kapunál csak a kapu és az ellenőrző</td><td>a bizalmi mag méretéről szól, nem a hibák valószínűségéről</td></tr>
+<tr><td>15</td><td>A gép magától megtalálja a hiányzó szabályt</td><td>Z3, a Studio élő futtatása</td><td>nem áll: veszély megnevezése nélkül megfelel; megnevezett veszélynél ellenpélda</td><td>a veszélyek felsorolása szakterületi tudás (P1)</td></tr>
+<tr><td>16</td><td>Egy specifikációból minden nyelven azonos a viselkedés</td><td>generálás három nyelvre</td><td>nem áll: a szabályok azonosak, a viselkedés nem (az ipari vezérlő és a C csak jelez, mert nincs kimeneti jel)</td><td>a kimeneti jelet ki kell mondani (P2b)</td></tr>
+<tr><td>17</td><td>A kerekítés nem számít</td><td>Z3, egzakt és 64 bites lebegőpontos mód</td><td>nem áll: a 0,1 + 0,2 ≤ 0,3 egzaktul nem korlátoz, lebegőpontosan soha nem teljesül</td><td>a bizonyításnak a gép számábrázolását kell követnie (P4)</td></tr>
+</table></div>
+<p><strong>Bizonyított</strong> (a megadott előfeltevések mellett): az 1., 2. (javított kapura), 4. (a sebességfeltétellel), 5–8. sor eredményei. <strong>Nem bizonyítható, mert nem ténykérdés vagy megfigyelés</strong>: a 10. és 11. sor. <strong>Nyitott</strong>: a 12. sor. A 13. és 14. sor érvelés: a bizalmi mag méretéről szól, nem valószínűségről. A 15–17. sor a MetaSpace Studion mért eredmény (2026-10-30), lásd az „Egy eszközön végigvíve” szakaszt.</p>
+<h2>Előfeltevések, hatókör, nyitott kérdések</h2>
+<p><strong>Előfeltevések.</strong> A tételek ezekből és csak ezekből következnek:</p>
+<ul>
+<li><strong>P1:</strong> a cél (E) helyes. Értékválasztás; a biológiában adott (fennmaradás).
+</li>
+<li><strong>P2a:</strong> nincs mellékút, minden szinten.
+</li>
+<li><strong>P2b:</strong> a határ teljes (látható és befolyásolható rajta a lényeges).
+</li>
+<li><strong>P3:</strong> a fizika és a környezet együttműködik, környezeti sebességgel és koncentrációval együtt.
+</li>
+<li><strong>P4:</strong> az ellenőrző (Z3) és a fordító megbízható, vagyis a bizalmi mag helyes.
+</li>
+</ul>
+<p><strong>Hatókör.</strong> A <code>.bio</code> nem a világ törvénykönyve, hanem egy határolt rendszer határának alkotmánya: kijelölt lényeges változókra, szintenként külön. A világ egészének nincs külseje, ezért nincs hová a kaput állítani, amelyet a belső nem tud megkerülni: az alkotmány csak a világ egy részére mondható ki.</p>
+<p><strong>Nyitott kérdések:</strong></p>
+<ol>
+<li>A P2b ellenőrzése a pacemakeren: mely belső változók nincsenek kivezetve.
+</li>
+<li>A sebességfeltétel általános levezetése tetszőleges sávmozgásra.
+</li>
+<li>A közösségi szint többlépéses, dinamikus modellje.
+</li>
+<li>A bizalmi mag minimalizálása (tanúsítványt ellenőrző kis program).
+</li>
+<li>Nyílt végű változás: új változók felvétele a szerződésbe futás közben.
+</li>
+</ol>
+<p><strong>Mellékeredmény a MetaSpace-nek.</strong> A <code>pacemaker.bio</code>-ból hiányzik a vészállapoti határidő és a lefelé irányú változás korlátja; a <code>pacemaker_guardrail.py</code> olvasat szerint nem korlátozza az alsó határt, és a NaN átmegy rajta (kódolvasás, nem futtatva). Javítandó a befektetői demó előtt. Állapot (2026-10-28 és 10-30): javított másolatok készültek (pacemaker_javitott.bio, pacemaker_guardrail_javitott.py: alsó korlát, pozitív igazolás, őrkutya), az eredetik érintetlenek; a fordító és a telepített zár a határidőt továbbra sem kényszeríti ki, a futási kernel gyorsulás-korlátja pedig 100 ezredmásodperces lépésre számol, nem másodpercre.</p>
+<h2>Függelék: gépi bizonyítások és hivatkozások</h2>
+<p>A gépi vizsgálatok a <code>_hinta_eloadas</code> mappában futtathatók (Python, z3-solver csomag).</p>
+<div class="tw"><table>
+<tr><th>Fájl</th><th>Tartalma</th></tr>
+<tr><td><code>pacemaker_kiut_feltetel.py</code></td><td>életképesség lépcsői, kapu-tétel, lebegőpontos kapu, optimális sáv</td></tr>
+<tr><td><code>szintek_kapcsolata.py</code></td><td>helyi és közös, kvóta-szerződés, hiányzó kapu, közösségi életképesség, koncentráció</td></tr>
+<tr><td><code>ALLAPOT.md</code></td><td>a munka állása, előfeltevések, helyesbítések</td></tr>
+<tr><td>diak.html</td><td>a 21 diás előadás (internet nélkül nyitható)</td></tr>
+<tr><td>kiegeszito.html</td><td>a 8 diás kiegészítő előadás a MetaSpace Studióról (élő demóval, mért eredményekkel)</td></tr>
+<tr><td>dosszie_pacemaker.html</td><td>a Studio igazolási dossziéja a javított pacemaker-specifikációról (2026-10-30)</td></tr>
+</table></div>
+<p>Minden vizsgálat formája: <code>unsat</code> a tagadásra = bizonyított; <code>sat</code> = konkrét ellenpélda.</p>
+<p><strong>Hivatkozások</strong> (a kiadási adatok ellenőrizve: 2026-11-01, kiadói és könyvtári katalógusok alapján):</p>
+<ul>
+<li>Ryle, G.: <em>The Concept of Mind</em> (1949); Polanyi, M.: <em>The Tacit Dimension</em> (1966); Wittgenstein, L.: <em>Filozófiai vizsgálódások</em>.
+</li>
+<li>Bernard, C.: a belső környezet állandóságáról (előadásai 1855–56-tól; összefoglalása: Leçons sur les phénomènes de la vie, 1878); Ashby, W. R.: <em>Design for a Brain</em> (1952); Conant, R. és Ashby, W. R. (1970): a jó szabályozó tétele.
+</li>
+<li>Maturana, H. és Varela, F.: <em>Autopoiesis and Cognition</em> (1980); Aubin, J.-P.: <em>Viability Theory</em> (1991).
+</li>
+<li>Tarski, A.: az igazság fogalmáról formális nyelvekben (1933, lengyelül; 1935, németül); <em>A Decision Method for Elementary Algebra and Geometry</em> (RAND, 1948; 2. kiadás: University of California Press, 1951).
+</li>
+<li>Rice, H. G. (1953); Angluin, D.: <em>Learning Regular Sets from Queries and Counterexamples</em> (1987); Kauffman, S.: <em>Investigations</em> (2000); Hume, D.: <em>Treatise of Human Nature</em> (1739–40).
+</li>
+</ul>
+<p><strong>Bevett nevek forrásai (2026-11-06, webes kereséssel ellenőrizve: szerző, év, folyóirat).</strong> A szószedetben szereplő Reiter (1978), Putnam és Fodor, Ryle (1949), Polanyi (1966), Aubin adatai ebben a körben nem lettek újraellenőrizve.</p>
+<ul>
+<li>Schneider, F. B. (2000). Enforceable security policies. <em>ACM Transactions on Information and System Security</em> 3(1), 30–50. (A futásidő figyeléssel kikényszeríthető szabályok a biztonsági tulajdonságok részhalmaza.)
+</li>
+<li>Alpern, B., Schneider, F. B. (1985). Defining liveness. <em>Information Processing Letters</em> 21(4), 181–185.
+</li>
+<li>Lamport, L. (1977). Proving the correctness of multiprocess programs. <em>IEEE Transactions on Software Engineering</em> SE-3(2), 125–143. (A biztonság és az élősség megkülönböztetése; a formális definíciók későbbiek.)
+</li>
+<li>Sha, L. (2001). Using simplicity to control complexity. <em>IEEE Software</em> 18(4), 20–28. (Simplex-architektúra.)
+</li>
+<li>Alshiekh, M., Bloem, R., Ehlers, R., Könighofer, B., Niekum, S., Topcu, U. (2018). Safe reinforcement learning via shielding. <em>AAAI-18</em>, 2669–2678.
+</li>
+<li>Saltzer, J. H., Schroeder, M. D. (1975). The protection of information in computer systems. <em>Proceedings of the IEEE</em>. (Alapértelmezett tiltás, teljes közvetítés.)
+</li>
+<li>Anderson, J. P. (1972). Computer security technology planning study (ESD-TR-73-51). (A referencia-figyelő fogalma; a kiadás éve forrásonként 1972 vagy 1973.)
+</li>
+<li>Karpathy, A. (2025. február 2.). Bejegyzés az X-en: a „vibe coding” kifejezés eredete.
+</li>
+</ul>
+</main>
+</body>
+</html>

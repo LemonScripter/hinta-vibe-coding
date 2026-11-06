@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A határ megépítése: kiegészítés</title>
+<style>
+:root{
+  --bg:#f6f4ee; --fg:#1d2a2c; --muted:#556569; --card:#ffffff; --line:#d8d4c6;
+  --accent:#0f766e; --accent-soft:#d9efec;
+  --warn:#9a4a07; --warn-soft:#fdf0d9;
+  --bad:#b42318; --bad-soft:#fde4e1;
+  --ok:#1f6f37; --ok-soft:#dff3e4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101719; --fg:#e8efee; --muted:#9fb0b3; --card:#172123; --line:#2a393c;
+    --accent:#4fd1c5; --accent-soft:#173533;
+    --warn:#f5b35a; --warn-soft:#38290f;
+    --bad:#ff8a7a; --bad-soft:#3b1a16;
+    --ok:#7fd99a; --ok-soft:#163222;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101719; --fg:#e8efee; --muted:#9fb0b3; --card:#172123; --line:#2a393c;
+  --accent:#4fd1c5; --accent-soft:#173533;
+  --warn:#f5b35a; --warn-soft:#38290f;
+  --bad:#ff8a7a; --bad-soft:#3b1a16;
+  --ok:#7fd99a; --ok-soft:#163222;
+}
+*{box-sizing:border-box}
+html{font-size:clamp(14px, min(1.5vw, 2.6vh), 26px)}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
+.slide{position:absolute;inset:0;display:none;padding:3.2rem 4.5rem 4rem;overflow:auto}
+.slide.active{display:flex;flex-direction:column;justify-content:flex-start;gap:1rem}
+.slide.active > :first-child{margin-top:auto}
+.slide.active > :last-child{margin-bottom:auto}
+.slide > *{max-width:var(--measure,62rem);width:100%;flex-shrink:0}
+.tag{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0}
+h1{font-size:3rem;line-height:1.1;margin:.2rem 0 .4rem}
+h2{font-size:1.9rem;line-height:1.15;margin:0 0 .2rem}
+.lead{font-size:1.2rem;color:var(--fg);margin:0}
+.muted{color:var(--muted)}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.3rem}
+li{margin:.25rem 0}
+code{font-family:Consolas,"Cascadia Mono",monospace;background:var(--accent-soft);padding:.05em .3em;border-radius:.25em;font-size:.92em}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:.8rem 1rem}
+.card b{display:block;color:var(--accent);margin-bottom:.15rem}
+.card.k{border-left:.3rem solid var(--accent)}
+.cards.dense{grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}
+.dense .card{font-size:.84rem;padding:.6rem .8rem;line-height:1.35}
+.dense .card b{font-size:.92rem}
+.eg{display:block;margin-top:.4rem;padding-top:.4rem;border-top:1px dashed var(--line);color:var(--muted);font-size:.8rem}
+.eg i{font-style:normal;font-weight:700;color:var(--accent)}
+@media (max-width:900px){.cards.dense{grid-template-columns:repeat(2,minmax(0,1fr))}}
+table{border-collapse:collapse;width:100%;background:var(--card);border:1px solid var(--line);border-radius:.5rem;overflow:hidden;font-size:.9rem}
+th,td{padding:.45rem .7rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accent-soft);color:var(--fg);font-weight:700}
+tr:last-child td{border-bottom:0}
+.ellen{border-left:.3rem solid var(--warn);background:var(--warn-soft);border-radius:.4rem;padding:.7rem 1rem;font-size:.95rem}
+.ellen::before{content:"ELLENPRÓBA";display:block;font-size:.65rem;letter-spacing:.14em;font-weight:800;color:var(--warn);margin-bottom:.2rem}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:.05rem .5rem;border-radius:1rem;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-bad{background:var(--bad-soft);color:var(--bad)}
+.p-warn{background:var(--warn-soft);color:var(--warn)}
+.quote{font-size:1.45rem;line-height:1.35;border-left:.3rem solid var(--accent);padding-left:1rem}
+.big{font-size:1.9rem;line-height:1.3;font-weight:600}
+.ans{background:var(--accent-soft);border-left:.3rem solid var(--accent);border-radius:.4rem;padding:.8rem 1.1rem;font-size:1.25rem;font-weight:600}
+.ok,.no{font-size:1.5rem;font-weight:700;margin:.2rem 0;font-family:Consolas,"Cascadia Mono",monospace}
+.ok{color:var(--ok)} .no{color:var(--bad)}
+.order{font-weight:700;line-height:1.7;font-size:.92rem}
+svg.mini{max-height:25vh;margin:.1rem 0 .3rem}
+svg.plot{max-height:34vh}
+.cols .card p{margin:.2rem 0;font-size:.92rem}
+.cols .card p b{display:inline;margin:0}
+.cols.tight .card p{font-size:.86rem;margin:.15rem 0}
+.cols.tight .card li{font-size:.86rem;margin:.12rem 0}
+.code{background:var(--card);border:1px solid var(--line);border-left:.3rem solid var(--accent);border-radius:.5rem;padding:.7rem 1rem;
+  font-family:Consolas,"Cascadia Mono",monospace;font-size:.82rem;line-height:1.5;white-space:pre;overflow:auto}
+.c-k{color:var(--accent);font-weight:700}
+.card li b{display:inline;margin:0}
+.c-c{color:var(--muted)}
+.codetag{display:inline-block;background:var(--accent);color:var(--bg);font-family:Consolas,"Cascadia Mono",monospace;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;padding:.1rem .55rem;border-radius:.3rem .3rem 0 0;margin-bottom:-1px}
+.codehead{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin:0 0 .15rem}
+.codehead b{font-size:.95rem}
+pre.code{margin:0;font-size:.78rem;line-height:1.45}
+.words{display:flex;flex-wrap:wrap;gap:.4rem .5rem}
+.words span{display:flex;flex-direction:column;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:.4rem;padding:.25rem .6rem}
+.words i{font-style:normal;font-weight:700;font-size:1.05rem}
+.words small{color:var(--accent);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.words .head{background:transparent;border-style:dashed}
+svg{width:100%;height:auto;max-height:38vh;display:block}
+svg text{font-family:inherit;fill:var(--fg)}
+.s-line{stroke:var(--fg);stroke-width:1.6;fill:none}
+.s-box{fill:var(--card);stroke:var(--fg);stroke-width:1.6}
+.s-acc{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.8}
+.s-bad{fill:var(--bad-soft);stroke:var(--bad);stroke-width:1.8}
+.s-warn{stroke:var(--bad);stroke-width:2;stroke-dasharray:5 4}
+.s-dash{stroke-dasharray:6 5}
+.s-muted{fill:var(--muted)!important}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.8rem}
+#ui{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;gap:.6rem;padding:.5rem 1rem;font-size:.8rem;color:var(--muted);
+  background:linear-gradient(to top,var(--bg) 70%,transparent)}
+#bar{position:fixed;left:0;top:0;height:.22rem;background:var(--accent);width:0;transition:width .2s}
+#ui button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:.4rem;padding:.2rem .7rem;cursor:pointer}
+#ui button:hover,#ui button:focus-visible{border-color:var(--accent);outline:none}
+#ui .sp{flex:1}
+@media (max-width:700px){
+  .slide{padding:1.6rem 1.1rem 4rem}
+  h1{font-size:2.2rem} h2{font-size:1.5rem}
+}
+@media print{
+  html,body{overflow:visible;height:auto}
+  .slide{position:static;display:flex!important;min-height:100vh;page-break-after:always;break-after:page}
+  #ui,#bar{display:none}
+}
+.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.7rem}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-top:.3rem solid var(--accent);border-radius:.6rem;padding:.9rem 1rem 1rem}
+.step:not(:last-child)::after{content:"\2192";position:absolute;right:-1.45rem;top:50%;transform:translateY(-50%);font-size:1.5rem;font-weight:700;color:var(--accent)}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:800;font-size:.95rem;margin-bottom:.4rem}
+.step b{display:block;font-size:1.05rem;margin-bottom:.25rem}
+.step p{font-size:.9rem;line-height:1.4}
+@media (max-width:900px){.chain{grid-template-columns:repeat(2,minmax(0,1fr))}.step:nth-child(2)::after{display:none}}
+table.spec td:first-child{font-family:Consolas,"Cascadia Mono",monospace;font-size:.88rem;white-space:nowrap;width:46%;background:var(--card)}
+table.spec td:last-child{font-size:.95rem}
+table.spec th{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.demo-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;font:inherit;font-weight:700;font-size:.9rem;color:var(--bg);background:var(--accent);text-decoration:none;border:0;border-radius:.45rem;padding:.4rem .9rem;cursor:pointer}
+.btn:hover,.btn:focus-visible{outline:.15rem solid var(--accent-soft);outline-offset:.1rem}
+.btn.sec{background:var(--card);color:var(--fg);border:1px solid var(--line);font-weight:600;font-size:.8rem;padding:.25rem .7rem}
+.btn.sec:hover,.btn.sec:focus-visible{border-color:var(--accent);outline:none}
+.run{display:flex;flex-direction:column;gap:.35rem}
+.run .top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.run h3{font-size:1rem;margin:0}
+.run p{font-size:.88rem;line-height:1.38}
+.run .res{border-top:1px dashed var(--line);padding-top:.35rem}
+.run .btn{align-self:flex-start;margin-top:auto}
+.xlink{margin:0;font-size:.85rem;display:flex;flex-wrap:wrap;gap:.4rem .6rem;align-items:center}
+.xlink a{color:var(--accent);font-weight:700;text-decoration:none;border:1px solid var(--accent);border-radius:.4rem;padding:.15rem .6rem;display:inline-block;background:var(--card)}
+.xlink a:hover,.xlink a:focus-visible{background:var(--accent-soft);outline:none}
+.xlink span{color:var(--muted)}
+#ui a.map{color:var(--accent);font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:.4rem;padding:.2rem .6rem;background:var(--card)}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<!-- K1 -->
+<section class="slide" aria-label="A tételtől az eszközig">
+  <p class="tag">Kiegészítés · a határ megépítése</p>
+  <h2>A tételtől az eszközig</h2>
+  <p class="xlink"><a href="diak.html#11">↩ Főelőadás 11. dia: a vibe-coding kapuval</a><span>innen megyünk a gyakorlatba</span></p>
+  <p class="lead">A főelőadás azt állította, hogy a belsőt nem kell ismerni, ha a határt megszabjuk. Most azt nézzük meg, hogyan lesz ebből egy eszközön végigvitt négy lépés.</p>
+  <div class="chain" role="list" aria-label="Négy lépés balról jobbra">
+    <div class="step" role="listitem"><span class="n">1</span><b>Leírom a határt</b>
+      <p>Embernyelven megmondom, mit szabad kimenni a programból (a <code>.bio</code> fájl).</p></div>
+    <div class="step" role="listitem"><span class="n">2</span><b>A gép keres ellenpéldát</b>
+      <p>A gépi bizonyító megnézi, nincs-e ellentmondás, és kereshet olyan helyzetet, amit a szabályok nem zárnak ki.</p></div>
+    <div class="step" role="listitem"><span class="n">3</span><b>A kapu elkészül</b>
+      <p>A szabályokból automatikusan kapukód lesz, három nyelven.</p></div>
+    <div class="step" role="listitem"><span class="n">4</span><b>Igazolás készül</b>
+      <p>Egy kinyomtatható dosszié rögzíti, mit bizonyítottunk és mit nem.</p></div>
+  </div>
+  <p class="muted" style="font-size:.85rem">Főleg ugyanaz a példa, mint a főelőadás 6. diáján: a pacemaker (szívritmus-szabályozó). A négy lépés egyikéhez sem kell programozni tudni.</p>
+  <div class="ellen">Azt jelenti ez, hogy az eszköz garantálja a biztonságot? <b>Nem.</b> Az eszköz azt bizonyítja, hogy a leírt szabályok egymásnak nem mondanak ellent, és hogy a generált kapu betartja őket (a generált Python kernelen mérve; a C kimenet nincs lefordítva). Azt, hogy a szabályok jók-e, és hogy semmi nem kerüli-e meg a kaput, nem bizonyítja. Ezt a 3. és a 8. dia mutatja meg.</div>
+</section>
+
+<!-- K2 -->
+<section class="slide" aria-label="Amit az ember ír">
+  <p class="tag">Kiegészítés · 1. lépés: a határ leírása</p>
+  <h2>Amit az ember ír</h2>
+  <p class="xlink"><a href="diak.html#6">↩ Főelőadás 6. dia: pontos fogalmak, a pacemaker</a><span>itt a típusos fájl</span></p>
+  <p class="lead">Ennyit kell leírnia az embernek: a határt. A program belsejét nem ő írja, és nem is olvassa.</p>
+  <table class="spec" aria-label="A pacemaker .bio fájljának lényegi sorai, soronként emberi nyelven">
+    <thead><tr><th>A fájl sorai (<code>.bio</code>)</th><th>Emberi nyelven</th></tr></thead>
+    <tbody>
+      <tr><td><span class="c-k">CELL</span> PacemakerSafetyCore</td><td>A szabályozó neve: ez a „sejt”, amelynek a határát leírjuk.</td></tr>
+      <tr><td><span class="c-k">OUTPUT</span> heart_rate: FLOAT [bpm] <span class="c-k">RANGE</span>(0, 300)</td><td>Kimenet: a szívritmus, ütés/perc egységben, 0 és 300 között értelmezett.</td></tr>
+      <tr><td><span class="c-k">INPUT</span> battery: FLOAT [pct] <span class="c-k">RANGE</span>(0, 100)</td><td>Bemenet: az elem töltöttsége százalékban.</td></tr>
+      <tr><td><span class="c-k">RULE</span> upper_rate: heart_rate &lt;= 165.0</td><td>A kimenő ütemszám legfeljebb 165 ütés/perc lehet.</td></tr>
+      <tr><td><span class="c-k">RULE</span> lower_rate: heart_rate &gt;= 40.0</td><td>Nem lehet 40 alatt (a túl lassú ütemadás ellen).</td></tr>
+      <tr><td><span class="c-k">RULE</span> smoothing: rate_accel &lt;= 2.0</td><td>A gyorsulás legfeljebb 2 ütés/perc másodpercenként.</td></tr>
+      <tr><td><span class="c-k">RULE</span> min_interval: interval_ms &gt;= 250</td><td>Két impulzus között legalább 250 ezredmásodperc teljen el.</td></tr>
+      <tr><td><span class="c-k">CRITICAL_SHIELD</span> { heart_rate = 60.0; interval_ms = 250.0; }</td><td>Baj esetén a biztonságos állapot: 60 ütés/perc, 250 ms köz.</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="font-size:.85rem">A típusos fájl (<code>t1_eredeti_tipusos.bio</code>) lényegi sorai, a kulcsszavak eredetiben. A kihagyott sorok az állapotgép átmenetei és a SIL-címke. A jeleknek iránya, egysége és tartománya van; a Studio ezt ellenőrzi.</p>
+  <div class="ellen">Ez nem programozás? <b>A megvalósítást nem programozod, a határt formális nyelven (.bio) írod le. Ez pontos fogalmazás.</b> A szabályok megírásához az orvosi szakterületet kell ismerni (mekkora a biztonságos tartomány), a programnyelvet nem. A pontos fogalmazás kézi kódolásnál is kell, tehát nem a gép teszi fölöslegessé.</div>
+</section>
+
+
+<!-- K3 -->
+<section class="slide" aria-label="A lyuk és a megnevezett veszély">
+  <p class="tag">Kiegészítés · 2. lépés: a gép keres ellenpéldát</p>
+  <h2>A lyuk és a megnevezett veszély</h2>
+  <p class="xlink"><a href="diak.html#9">↩ Főelőadás 9. dia: ellenpélda-keresés</a><span>ott elméletben, itt élőben</span></p>
+  <div class="demo-head">
+    <p class="lead" style="flex:1;min-width:18rem">Ugyanaz a pacemaker, három futtatás. Élőben is kipróbálható a Studióban.</p>
+    <a class="btn" href="https://studio.metaspace.bio/app" target="_blank" rel="noopener">Megnyitás: studio.metaspace.bio/app ↗</a>
+  </div>
+  <div class="card k" style="padding:.55rem .9rem"><p style="font-size:.92rem"><b style="display:inline;color:var(--fg)">A veszély megnevezése:</b> <code>HAZARD fast_drop: rate_decel &gt; 2.0</code> = a kimenő ütemszám gyorsabban esik, mint 2 ütés/perc másodpercenként.</p></div>
+  <div class="cols">
+    <div class="card run">
+      <div class="top"><h3>1. futtatás</h3><span class="pill p-ok">PASS · megfelel</span></div>
+      <p>Az eredeti szabályok, típusos jelekkel (irány, egység, tartomány), veszély megnevezése nélkül.</p>
+      <p class="res">A szabályok nem mondanak ellent egymásnak. A hiányzó „lefelé” korlátot <b>nem látja</b>.</p>
+      <button class="btn sec" type="button" data-copy="spec1">Másolás a Studióhoz</button>
+    </div>
+    <div class="card run">
+      <div class="top"><h3>2. futtatás</h3><span class="pill p-bad">FAIL · hibát jelez</span></div>
+      <p>Ugyanez + a megnevezett veszély.</p>
+      <p class="res"><b>Rés a specifikációban.</b> Ellenpélda: 40 ütés/perc, esés 3 ütés/perc/s. Minden szabály teljesül, mégis veszély.</p>
+      <button class="btn sec" type="button" data-copy="spec2">Másolás a Studióhoz</button>
+    </div>
+    <div class="card run">
+      <div class="top"><h3>3. futtatás</h3><span class="pill p-ok">PASS · megfelel</span></div>
+      <p>A javított változat (kimondott lefelé korlát) + ugyanaz a veszély.</p>
+      <p class="res">A veszélyt egy szabály <b>bizonyítottan kizárja</b>: <code>rate_decel &lt;= 2.0</code>.</p>
+      <button class="btn sec" type="button" data-copy="spec3">Másolás a Studióhoz</button>
+    </div>
+  </div>
+  <p class="muted" style="font-size:.82rem">A veszély megnevezése új mérőszámot kíván: a <code>rate_decel</code> jelet is deklarálni kell. A fájlok típusosak (kapcsos zárójeles forma): a jeleknek iránya, típusa, egysége és tartománya van. Mért eredmények: 2026-11-01, MetaSpace Studio 2.12 (élő, a <code>/app</code> felület). A „.bio specifikáció” panelbe másolás előtt jelöld ki a régi szöveget (<b>Ctrl+A</b>), majd a <b>Verify</b> gomb ugyanezt adja.</p>
+  <div class="ellen">Akkor a gép semmit sem bizonyít? <b>Dehogy.</b> Bizonyítja, hogy a megnevezett veszélyt a szabályok kizárják, vagy ellenpéldát ad. Azt viszont nem bizonyíthatja, hogy minden veszélyt megneveztünk. Ez az ember dolga, és ugyanúgy az, mint a kézi kódolásnál.</div>
+</section>
+
+<!-- K4 -->
+<section class="slide" aria-label="Egy specifikáció, három nyelv">
+  <p class="tag">Kiegészítés · 3. lépés: a kapu elkészül</p>
+  <h2>Egy specifikáció, három nyelv</h2>
+  <p class="xlink"><a href="diak.html#7">↩ Főelőadás 7. dia: a kapu-tétel és a zárt világ elve</a><span>ott a tétel, itt a generált kapu</span></p>
+  <p class="lead">Ugyanabból a fájlból, kézzel írt kód nélkül. A Studióban: a célnyelv kiválasztása, majd a <b>Generate</b> gomb.</p>
+  <div class="cols tight">
+    <div><span class="codetag">Python</span><pre class="code" aria-label="A Python kimenet öt szabálysora" style="font-size:.66rem">return (env['heart_rate'] &lt;= 165.0)
+return (env['heart_rate'] &gt;= 40.0)
+return (env['rate_accel'] &lt;= 2.0)
+return (env['rate_decel'] &lt;= 2.0)
+return (env['interval_ms'] &gt;= 250)</pre>
+      <p class="muted" style="font-size:.82rem;margin-top:.3rem">Szabálysértésnél a kernel a biztonságos állapotot (60 ütés/perc) alkalmazza, és zár, amíg le nem nyugtázzák.</p></div>
+    <div><span class="codetag">Ipari vezérlő</span><pre class="code" aria-label="Az ipari vezérlő kimenet öt szabálysora" style="font-size:.66rem">inv_upper_rate := (heart_rate_cmd &lt;= 165.0);
+inv_lower_rate := (heart_rate_cmd &gt;= 40.0);
+inv_smoothing := (rate_accel_cmd &lt;= 2.0);
+inv_decel_limit := (rate_decel_cmd &lt;= 2.0);
+inv_min_interval := (interval_ms_cmd &gt;= 250.0);</pre>
+      <p class="muted" style="font-size:.82rem;margin-top:.3rem">Szabálysértésnél a kimenet a biztonságos érték (60 ütés/perc), a blokk hibát jelez és zár, amíg le nem nyugtázzák.</p></div>
+    <div><span class="codetag">C</span><pre class="code" aria-label="A C kimenet öt szabálysora" style="font-size:.66rem">bool inv_upper_rate = (heart_rate_cmd &lt;= 165.0);
+bool inv_lower_rate = (heart_rate_cmd &gt;= 40.0);
+bool inv_smoothing = (rate_accel_cmd &lt;= 2.0);
+bool inv_decel_limit = (rate_decel_cmd &lt;= 2.0);
+bool inv_min_interval = (interval_ms_cmd &gt;= 250.0);</pre>
+      <p class="muted" style="font-size:.82rem;margin-top:.3rem">Szabálysértésnél a kimenet a biztonságos érték (60 ütés/perc), a blokk hibát jelez és zár, amíg le nem nyugtázzák.</p></div>
+  </div>
+  <p class="muted" style="font-size:.82rem">Mért eredmény: 2026-11-01, MetaSpace Studio 2.12 (élő), a javított, típusos pacemaker-specifikáció és a megnevezett veszély; mindhárom nyelvre PASS, telepíthető jelzéssel. Csak az öt szabálysor látszik, a keretkód kimaradt.</p>
+  <div class="ellen">Ugyanazt csinálja mind a három? <b>A szabályok és a kimenet ugyanaz.</b> Sértésnél mindhárom a biztonságos értéket (60 ütés/perc) adja, és zár, amíg le nem nyugtázzák. Ez azért van így, mert a típusos fájl kimondja, melyik jel kimenet (<code>OUTPUT</code>): a lapos pacemaker-fájlnál, kimeneti jel nélkül, az ipari vezérlő és a C csak hibát jelzett és zárolt (a generált kód szerint: „monitor: nincs kimeneti aktuátor”). A keret különbözik: a Python kernel az első híváskor minden szenzort látni akar. A C-kimenet ezen a gépen nincs lefordítva, a szintaxisát átnézés igazolja.</div>
+</section>
+<!-- K5 -->
+<section class="slide" aria-label="A lebegőpontos csapda">
+  <p class="tag">Kiegészítés · a számok csapdái</p>
+  <h2>A lebegőpontos csapda</h2>
+  <p class="xlink"><a href="diak.html#9">↩ Főelőadás 9. dia: a nem-szám átmegy a naiv kapun</a><span>ott a kézzel írt kapu, itt a generált</span></p>
+  <div class="cols">
+    <div class="card k"><b>A) A nem-szám (NaN): hibás szenzor</b>
+      <p style="font-size:.9rem">Egyetlen új szabály a pacemaker fájlban: <code>INVARIANT: is_valid(heart_rate)</code></p>
+      <table style="margin-top:.5rem;font-size:.85rem">
+        <thead><tr><th>Célnyelv</th><th>Mit generál</th></tr></thead>
+        <tbody>
+          <tr><td>Python</td><td><code>_mg.is_valid(env['heart_rate'])</code></td></tr>
+          <tr><td>C</td><td><code>isfinite(heart_rate)</code></td></tr>
+          <tr><td>Ipari vezérlő</td><td><b>Nem generál.</b> A hibaüzenet szerint külön logikai jel kell (például <code>sensor_ok</code>).</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="font-size:.8rem;margin-top:.4rem">A szabályok pozitív alakúak („legalább 40, legfeljebb 165”), a NaN pedig minden összehasonlításban hamis, ezért a kapu alapból sem engedi át. Az <code>is_valid</code> ezt kimondottá teszi.</p></div>
+    <div class="card k"><b>B) Kitérő: a kerekítés</b>
+      <p style="font-size:.9rem">Külön példa, nem pacemaker: <code>a + b &lt;= 0.3</code>, ahol <code>a</code> = 0,1 és <code>b</code> = 0,2 rögzített.</p>
+      <table style="margin-top:.5rem;font-size:.85rem">
+        <thead><tr><th>Számolási mód</th><th>Mit mond a gép</th></tr></thead>
+        <tbody>
+          <tr><td>egzakt (alapértelmezett)</td><td><span class="pill p-warn">WARN</span> mindig igaz, nem korlátoz</td></tr>
+          <tr><td>lebegőpontos (IEEE-754, 64 bit)</td><td><span class="pill p-bad">FAIL</span> soha nem teljesül, mindig tiltana</td></tr>
+        </tbody>
+      </table>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem">
+        <button class="btn sec" type="button" data-copy="spec_k5a">Másolás: egzakt mód</button>
+        <button class="btn sec" type="button" data-copy="spec_k5b">Másolás: lebegőpontos mód</button>
+      </div>
+      <p class="muted" style="font-size:.8rem;margin-top:.4rem">A bizonyításnak ugyanazzal a számábrázolással kell számolnia, mint a géppel, amelyen a kapu fut. Az IEEE-754 a számítógépek lebegőpontos számábrázolási szabványa.</p></div>
+  </div>
+  <p class="muted" style="font-size:.82rem">Mért eredmények: 2026-10-30, MetaSpace Studio 2.8 (élő). A Studio saját lebegőpontos tesztkészlete (12 teszt) zöld.</p>
+  <div class="ellen">A lebegőpontos mód mindent megold? <b>Nem.</b> Opcionális: alapból egzakt számolás van. A nem-szám kezelése nem automatikus, a szabályban ki kell mondani (<code>is_valid</code>), az ipari vezérlőn pedig nem hordozható, ott külön logikai jel kell. A gép azt is csak akkor tudja, ha a szabályban szerepel.</div>
+</section>
+
+<!-- K6 -->
+<section class="slide" aria-label="Az igazolási dosszié">
+  <p class="tag">Kiegészítés · 4. lépés: igazolás készül</p>
+  <h2>Az igazolási dosszié: mit állít és mit nem</h2>
+  <p class="xlink"><a href="diak.html#20">↩ Főelőadás 20. dia: nem idézünk hitelesítésként</a><span>a dosszié sem az</span></p>
+  <div class="demo-head">
+    <p class="lead" style="flex:1;min-width:18rem">A mai valódi pacemaker-dosszié alapján, a Studio kimenetéből.</p>
+    <a class="btn" href="dosszie_pacemaker_tipusos.html" target="_blank" rel="noopener">Dosszié megnyitása ↗</a>
+  </div>
+  <div class="cols">
+    <div class="card k"><b>Mit rögzít</b>
+      <ul style="font-size:.9rem">
+        <li><b>Melyik specifikációt bizonyítottuk:</b> a szöveg ujjlenyomata (SHA-256), <code>98e3dc3c…</code> Egy betű módosítása más ujjlenyomatot ad.</li>
+        <li><b>Mikor és mivel:</b> 2026-11-01, MetaSpace Studio 2.12, Z3 gépi bizonyító.</li>
+        <li><b>Melyik veszélyt melyik szabály zárja ki:</b> <code>fast_drop</code> → <b>KIZÁRVA</b> → <code>decel_limit</code> (<code>rate_decel &lt;= 2.0</code>).</li>
+        <li><b>Minden szabályra ellenpélda:</b> megmutatja, hogy a szabály értelmes, vagyis létezik állapot, amely megsérti.</li>
+      </ul></div>
+    <div class="card k" style="border-left-color:var(--warn)"><b style="color:var(--warn)">Mit nem állít</b>
+      <ul style="font-size:.9rem">
+        <li>A le nem írt mérnöki szándékot.</li>
+        <li>A tartományok fizikai valósághűségét.</li>
+        <li>A korlátlan ideig tartó, időbeli tulajdonságokat.</li>
+        <li>A kikényszerítés csak a kijelölt határon érvényes, nem megkerülhetetlen.</li>
+        <li>Nem helyettesíti a teljes biztonsági dokumentációt.</li>
+        <li>A „SIL: 3 · IEC 62304” címkét a specifikációba mi írtuk: nem tanúsítás. A dosszié „Szint 1/2/3” szava a kikényszerítés fokát jelenti.</li>
+      </ul></div>
+  </div>
+  <div class="card" style="border-left:.3rem solid var(--warn);background:var(--warn-soft);padding:.6rem 1rem;font-size:.88rem">
+    <b style="display:inline;color:var(--warn)">Két őszinte megfigyelés, amit ez a dosszié maga mutat.</b>
+    A jelek típusa és tartománya itt már megadott, de a tartományok (például a pulzus 0–300) <b style="display:inline;margin:0;color:var(--fg)">a mi becslésünk</b>, nem orvosi adat: a dosszié a megadott tartományokon bizonyít. A biztonságos állapot ellenőrizhető (PASS), de a próba közben kiderült: egy kimenethez (<code>interval_ms</code>) eleinte nem adtunk biztonságos értéket, a generált kód 0-t írt, ami sértette a 250-es korlátot, és az ellenőrzés mégis PASS volt. Ezt kézzel javítottuk: <b style="display:inline;margin:0;color:var(--fg)">minden kimenetnek ki kell mondani a biztonságos értékét</b>.
+  </div>
+  <p class="muted" style="font-size:.82rem">A Studióban a <b>Dosszié</b> gomb ugyanezt adja, a böngészőből nyomtatható (PDF). A mentett példány a <code>dosszie_pacemaker_tipusos.html</code>, internet nélkül is megnyílik.</p>
+  <div class="ellen">Ez tanúsítvány? <b>Nem.</b> A dosszié a saját specifikációd bizonyítási naplója, nem független hitelesítés. Tanúsítást független szervezet adhat. Ezt az eszköz nem helyettesíti, és mi sem idézzük hitelesítésként (lásd a főelőadás 20. diáját).</div>
+</section>
+<!-- K7 -->
+<section class="slide" aria-label="Meglévő programból határ-váz">
+  <p class="tag">Kiegészítés · a vibe-coding gyakorlata</p>
+  <h2>Meglévő programból határ-váz</h2>
+  <p class="xlink"><a href="diak.html#11">↩ Főelőadás 11. dia: a kódot nem kell elolvasni</a><span>itt a gyakorlata</span></p>
+  <p class="lead">A programot nem kell elolvasni: a szerkezetét a gép olvassa ki, a határt az ember mondja ki.</p>
+  <div class="cols tight">
+    <div class="card k"><b>1. A meglévő program</b>
+      <pre class="code" style="margin-top:.3rem" aria-label="Rövid vezérlő-osztály">class PacemakerController:
+    MAX_RATE = 165
+    MIN_RATE = 40
+    def read_heart_rate(self): ...
+    def set_pacing_rate(self, bpm): ...</pre>
+      <p class="muted" style="font-size:.8rem;margin-top:.3rem">Tipikus vezérlő-osztály, rövidítve. A Studióban: <b style="display:inline;margin:0;color:var(--fg)">Import .py</b>, beillesztés, <b style="display:inline;margin:0;color:var(--fg)">Kinyerés</b>.</p>
+      <button class="btn sec" type="button" data-copy="spec_k7py" style="margin-top:.4rem">Másolás az Importhoz</button></div>
+    <div class="card k"><b>2. Amit a gép kiolvas</b>
+      <ul style="font-size:.88rem;margin-top:.3rem">
+        <li>Szenzor: <code>heart_rate</code></li>
+        <li>Aktuátor: <code>pacing_rate</code></li>
+        <li>Talált számok: 165 és 40, <b style="display:inline;margin:0;color:var(--warn)">„lehetséges limit, ellenőrizd!”</b></li>
+        <li>Alapértelmezett tartomány: <code>0–100</code>, ami a pacemakerhez <b style="display:inline;margin:0;color:var(--warn)">hibás</b> („TODO: valós fizikai tartomány”).</li>
+      </ul>
+      <p class="muted" style="font-size:.8rem">A váz fejléce kimondja: a limiteket és a veszélyt neked kell megadnod, ne a kódból örököld.</p></div>
+    <div class="card k"><b>3. Amit az ember tölt ki</b>
+      <pre class="code" style="margin-top:.3rem" aria-label="A kitöltött szabályok">RULE upper: pacing_rate &lt;= 165;
+RULE lower: pacing_rate &gt;= 40;
+HAZARD too_fast: pacing_rate &gt; 165;
+HAZARD too_slow: pacing_rate &lt; 40;
+pacing_rate = 60;</pre>
+      <p class="muted" style="font-size:.8rem;margin-top:.3rem">Eredmény: <span class="pill p-ok">PASS</span> mindkét veszélyt egy szabály bizonyítottan kizárja; Python, ipari vezérlő és C is generálódik, telepíthető jelzéssel.</p>
+      <button class="btn sec" type="button" data-copy="spec_k7bio" style="margin-top:.4rem">Másolás a Verify-hoz</button></div>
+  </div>
+  <p class="muted" style="font-size:.82rem">Mért: 2026-10-30, MetaSpace Studio 2.8 (élő). Saját fájlainkon az import csak részben működött: a <code>pacemaker_guardrail.py</code>-ban nem ismerte fel a szenzort és az aktuátort („add meg kézzel”), a <code>pacemaker_runtime_kernel.py</code>-ban pedig nem a pulzust, hanem az <code>ai_command</code> jelet találta meg. Az import névmintákra épít (<code>read_…</code>, <code>set_…</code>).</p>
+  <div class="ellen">Akkor az import megérti a programot? <b>Nem.</b> Csak a szerkezetét olvassa ki, a nevekből és a konstansokból. Hogy mi a biztonságos határ, azt az ember mondja ki, a szakterületi tudásából. Ha a program más nevekkel dolgozik, kézzel kell kiegészíteni.</div>
+</section>
+
+<script type="text/plain" id="spec_k7py">class PacemakerController:
+    MAX_RATE = 165
+    MIN_RATE = 40
+    def read_heart_rate(self): ...
+    def set_pacing_rate(self, bpm): ...</script>
+<script type="text/plain" id="spec_k7bio">CELL PacemakerController {
+  INTERFACE {
+    INPUT  heart_rate: FLOAT [bpm] RANGE(0, 300);
+    OUTPUT pacing_rate: FLOAT [bpm] RANGE(0, 300);
+  }
+  INVARIANTS {
+    RULE upper: pacing_rate <= 165;
+    RULE lower: pacing_rate >= 40;
+  }
+  HAZARDS {
+    HAZARD too_fast: pacing_rate > 165;
+    HAZARD too_slow: pacing_rate < 40;
+  }
+  STATES {
+    STATE Safe TYPE CRITICAL_SHIELD {
+      pacing_rate = 60;
+    }
+  }
+}</script>
+<!-- K8 -->
+<section class="slide" aria-label="Mit nem tud még">
+  <p class="tag">Kiegészítés · őszintén a végén</p>
+  <h2>Mit nem tud (még)</h2>
+  <p class="xlink"><a href="diak.html#19">↩ Főelőadás 19. dia: mi bizonyított, mi nem</a><a href="diak.html#21">Tovább: főelőadás 21. dia, összegzés →</a></p>
+  <div class="cols">
+    <div class="card k"><b>Mit ad az eszköz (mért)</b>
+      <ul style="font-size:.9rem">
+        <li>A leírt szabályok <b style="display:inline;margin:0;color:var(--fg)">belső helyességét</b>, gépi bizonyítással. A Studio saját tesztjei zöldek: 144 teszt, 0 hibás.</li>
+        <li>A kapu <b style="display:inline;margin:0;color:var(--fg)">szerkezeti betartását</b>: a generált Python kernelen mérve sértő érték nem alkalmazódik, hibánál tiltás van (a C nincs lefordítva).</li>
+        <li>Egy specifikációból <b style="display:inline;margin:0;color:var(--fg)">három nyelvet</b> és egy igazolási dossziét ujjlenyomattal.</li>
+        <li>Ellenpéldát a lyukra, <b style="display:inline;margin:0;color:var(--fg)">ha megneveztük</b> a veszélyt.</li>
+      </ul></div>
+    <div class="card k" style="border-left-color:var(--warn)"><b style="color:var(--warn)">Mit nem ad (még)</b>
+      <ul style="font-size:.9rem">
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">teljességet</b>: a hiányzó szabályt csak akkor látja, ha a veszélyt megneveztük.</li>
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">megkerülhetetlenséget</b>: a kapu csak a kijelölt határon kötelez. A megkerülhetetlen fok (az operációs rendszer kényszeríti ki, csak Linuxon) és a fizikai fok külön, későbbi elem.</li>
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">kész hardverillesztést</b>: a tényleges hardverírás üres váz, a beépítést végző mérnök tölti ki.</li>
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">határidőt és az elsőbbséget</b>: a régi, jelek nélküli fájlformátum csak értékként tárolta, nem kényszerítette ki; a típusos fájlban a jelek iránya, egysége és tartománya ellenőrzött, a határidő kikényszerítése viszont nem.</li>
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">C-kód fordítását</b>: ezen a gépen nincs lefordítva, a szintaxist átnézés igazolja.</li>
+        <li>A <b style="display:inline;margin:0;color:var(--fg)">független ellenőrzést</b>: ez a saját naplónk, nem tanúsítvány.</li>
+      </ul></div>
+  </div>
+  <div class="card" style="border-left:.3rem solid var(--warn);background:var(--warn-soft);padding:.55rem 1rem;font-size:.86rem">
+    <b style="display:inline;margin:0;color:var(--warn)">Nyitott tétel.</b> A pacemaker saját futási kernelében (<code>pacemaker_runtime_kernel.py</code>) a gyorsulás-korlát 100 ezredmásodperces lépésre számol, nem másodpercre. A 2. dia szövege („másodpercenként”) a specifikáció szándékát mondja, a kernel viselkedése ettől eltér. Ez korábbról nyitott javítás.
+  </div>
+  <p class="ans" style="font-size:1.05rem">Az eszköz a tétel gyakorlata: a hatást a határon kényszeríti ki, amennyire a határ megkerülhetetlen. A szabály helyességét és a határ teljességét az ember adja, és az sem bizonyítható, hogy a modell a valóság.</p>
+  <div class="ellen">Akkor érdemes ezt használni? <b>Igen, ha a határ kijelölt, és minden beavatkozás átmegy rajta.</b> Az eszköz a leírt szabályok helyességét és a kapu betartását adja, nem többet. Ennél többet állítani nem lenne őszinte.</div>
+</section>
+<script type="text/plain" id="spec_k5a">CELL Round {
+  INTERFACE {
+    INPUT a: FLOAT RANGE(0.1, 0.1);
+    INPUT b: FLOAT RANGE(0.2, 0.2);
+  }
+  INVARIANTS { RULE r: a + b <= 0.3; }
+}</script>
+<script type="text/plain" id="spec_k5b">CELL Round {
+  META { PRECISION: "ieee754"; FLOAT_WIDTH: 64; }
+  INTERFACE {
+    INPUT a: FLOAT RANGE(0.1, 0.1);
+    INPUT b: FLOAT RANGE(0.2, 0.2);
+  }
+  INVARIANTS { RULE r: a + b <= 0.3; }
+}</script>
+<script type="text/plain" id="spec1">BIO_VERSION 1.0
+CELL PacemakerSafetyCore {
+  META { SIL: 3; STANDARD: "IEC 62304"; }
+  INTERFACE {
+    OUTPUT heart_rate:   FLOAT [bpm] RANGE(0, 300);
+    OUTPUT rate_accel:   FLOAT RANGE(0, 50);
+    OUTPUT interval_ms:  FLOAT [ms] RANGE(0, 5000);
+    INPUT  battery:      FLOAT [pct] RANGE(0, 100);
+    INPUT  sensor_stable: BINARY;
+  }
+  INVARIANTS {
+    RULE upper_rate:   heart_rate <= 165.0;
+    RULE lower_rate:   heart_rate >= 40.0;
+    RULE smoothing:    rate_accel <= 2.0;
+    RULE min_interval: interval_ms >= 250;
+  }
+  STATES {
+    STATE Standby { TRANSITION TO RateAdaptive IF battery > 10; }
+    STATE RateAdaptive { TRANSITION TO FailsafeVVI IF heart_rate > 165; }
+    STATE FailsafeVVI TYPE CRITICAL_SHIELD { heart_rate = 60.0; interval_ms = 250.0; }
+  }
+}</script>
+<script type="text/plain" id="spec2">BIO_VERSION 1.0
+CELL PacemakerSafetyCore {
+  META { SIL: 3; STANDARD: "IEC 62304"; }
+  INTERFACE {
+    OUTPUT heart_rate:   FLOAT [bpm] RANGE(0, 300);
+    OUTPUT rate_accel:   FLOAT RANGE(0, 50);
+    OUTPUT rate_decel:   FLOAT RANGE(0, 50);
+    OUTPUT interval_ms:  FLOAT [ms] RANGE(0, 5000);
+    INPUT  battery:      FLOAT [pct] RANGE(0, 100);
+    INPUT  sensor_stable: BINARY;
+  }
+  INVARIANTS {
+    RULE upper_rate:   heart_rate <= 165.0;
+    RULE lower_rate:   heart_rate >= 40.0;
+    RULE smoothing:    rate_accel <= 2.0;
+    RULE min_interval: interval_ms >= 250;
+  }
+  HAZARDS { HAZARD fast_drop: rate_decel > 2.0; }
+  STATES {
+    STATE Standby { TRANSITION TO RateAdaptive IF battery > 10; }
+    STATE RateAdaptive { TRANSITION TO FailsafeVVI IF heart_rate > 165; }
+    STATE FailsafeVVI TYPE CRITICAL_SHIELD { heart_rate = 60.0; interval_ms = 250.0; }
+  }
+}</script>
+<script type="text/plain" id="spec3">BIO_VERSION 1.0
+CELL PacemakerSafetyCore {
+  META { SIL: 3; STANDARD: "IEC 62304"; }
+  INTERFACE {
+    OUTPUT heart_rate:   FLOAT [bpm] RANGE(0, 300);
+    OUTPUT rate_accel:   FLOAT RANGE(0, 50);
+    OUTPUT rate_decel:   FLOAT RANGE(0, 50);
+    OUTPUT interval_ms:  FLOAT [ms] RANGE(0, 5000);
+    INPUT  battery:      FLOAT [pct] RANGE(0, 100);
+    INPUT  sensor_stable: BINARY;
+  }
+  INVARIANTS {
+    RULE upper_rate:   heart_rate <= 165.0;
+    RULE lower_rate:   heart_rate >= 40.0;
+    RULE smoothing:    rate_accel <= 2.0;
+    RULE decel_limit:  rate_decel <= 2.0;
+    RULE min_interval: interval_ms >= 250;
+  }
+  HAZARDS { HAZARD fast_drop: rate_decel > 2.0; }
+  STATES {
+    STATE Standby { TRANSITION TO RateAdaptive IF battery > 10; }
+    STATE RateAdaptive { TRANSITION TO FailsafeVVI IF heart_rate > 165; }
+    STATE FailsafeVVI TYPE CRITICAL_SHIELD { heart_rate = 60.0; interval_ms = 250.0; }
+  }
+}</script>
+<div id="ui">
+  <button id="prev" aria-label="Előző dia">‹</button>
+  <button id="next" aria-label="Következő dia">›</button>
+  <span id="count" aria-live="polite"></span>
+  <span class="sp"></span>
+  <span>← → lapoz · F teljes képernyő · T téma</span>
+  <a class="map" href="kapcsolat.html">Térkép</a>
+  <a class="map" href="szotar.html">Szószedet</a>
+  <button id="theme" aria-label="Világos/sötét téma váltása">◐</button>
+</div>
+
+<script>
+(function(){
+  Array.prototype.forEach.call(document.querySelectorAll('.code.bio'), function(el){
+    var t = el.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    t = t.replace(/\b(INVARIANT|STATE|WARNING|FAILSAFE):/g, '<span class="c-k">$1:</span>')
+         .replace(/\b(CELL|FROM|TO|IF)\b/g, '<span class="c-k">$1</span>');
+    el.innerHTML = t;
+  });
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var count = document.getElementById('count');
+  var bar = document.getElementById('bar');
+  var i = 0;
+  // Ha a dia tartalma magasabb a képernyőnél, a betűméretet addig csökkentjük, amíg elfér (legfeljebb 40%-kal).
+  function fit(){
+    var root = document.documentElement, s = slides[i];
+    root.style.fontSize = '';
+    var base = parseFloat(getComputedStyle(root).fontSize);
+    root.style.setProperty('--measure', (62 * base) + 'px');
+    var size = base;
+    while (s.scrollHeight > s.clientHeight + 1 && size > base * 0.6) {
+      size -= base * 0.03;
+      root.style.fontSize = size + 'px';
+    }
+  }
+  window.addEventListener('resize', fit);
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    fit();
+    slides[i].scrollTop = 0;
+    count.textContent = (i + 1) + ' / ' + slides.length;
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+  }
+  function toggleTheme(){
+    var root = document.documentElement;
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  }
+  function fullscreen(){
+    try {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    } catch (e) {}
+  }
+  document.getElementById('prev').onclick = function(){ show(i - 1); };
+  document.getElementById('next').onclick = function(){ show(i + 1); };
+  document.getElementById('theme').onclick = toggleTheme;
+  document.addEventListener('keydown', function(e){
+if (e.target && e.target.closest && e.target.closest('a,button') && (e.key === 'Enter' || e.key === ' ')) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); show(i + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); show(i - 1); }
+    else if (k === 'Home') show(0);
+    else if (k === 'End') show(slides.length - 1);
+    else if (k === 'f' || k === 'F') fullscreen();
+    else if (k === 't' || k === 'T') toggleTheme();
+  });
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+  var start = parseInt((location.hash || '').slice(1), 10);
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>
+<script>
+(function(){
+  function fallback(t, done){
+    var a = document.createElement('textarea'); a.value = t; a.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(a); a.select(); var ok = false;
+    try { ok = document.execCommand('copy'); } catch (x) {}
+    document.body.removeChild(a); done(ok);
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-copy]') : null; if (!b) return;
+    var t = document.getElementById(b.getAttribute('data-copy')).textContent;
+    var old = b.getAttribute('data-label') || b.textContent; b.setAttribute('data-label', old);
+    function done(ok){ b.textContent = ok ? 'Másolva ✓' : 'Nem sikerült, jelöld ki kézzel'; setTimeout(function(){ b.textContent = old; }, 1800); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(function(){ done(true); }, function(){ fallback(t, done); });
+    else fallback(t, done);
+  });
+})();
+</script>
+</body>
+</html>
