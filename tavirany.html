@@ -44,7 +44,7 @@ button:active{filter:brightness(.9)}
 (function(){
   var KEY = new URLSearchParams(location.search).get('k');
   var main = document.getElementById('main'), dot = document.getElementById('dot');
-  var slides = [], i = 0, t0 = null, seenV = -1, END = 28, MAXSLIDES = 12;
+  var slides = [], i = 0, t0 = null, seenV = -1, END = 31, MAXSLIDES = 13;
   var inflight = false, dirty = false, polling = false, fails = 0, offlineNotes = false;
   if (!KEY) { main.innerHTML = '<div id="msg">Hiányzik a kód. Olvasd le a laptopon megjelenő QR-kódot (az élő változatban nyomj <b>K</b> billentyűt).</div>'; return; }
 

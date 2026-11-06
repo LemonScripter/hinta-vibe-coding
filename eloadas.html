@@ -358,8 +358,38 @@ body.np-open #np{display:block}
   </aside>
 </section>
 
+<!-- 9b · HÁROM ALKALMAZÁS -->
+<section class="slide" aria-label="Három alkalmazás, három határ" data-part="Példák" data-t="26">
+  <p class="tag">Három alkalmazás, három határ · saját munkák</p>
+  <h2>Hol működik a kapu, és hol nem?</h2>
+  <div class="cols">
+    <div class="card k"><b>MetaSpace-membrán</b>
+      <p class="muted" style="margin:.1rem 0 .4rem">az MI-ügynök hatásának bezárása</p>
+      <ul><li>minden állításnak szintje van: kikényszerített, együttműködő, vagy nem védelem</li><li>ez a munka is a membrán alatt futott, és megfogott minket</li></ul>
+      <p class="muted" style="font-size:.88rem"><i>Határ:</i> nem teszi a modellt injekció-állóvá; kutatási prototípus, nincs külső audit.</p></div>
+    <div class="card k"><b>Műholdas hibakezelő</b>
+      <p class="muted" style="margin:.1rem 0 .4rem">élő szimuláció</p>
+      <ul><li>hibainjektálás: napelem, GPS-hamisítás, akkumulátor</li><li>a rendszer észleli és elkülöníti a hibát</li></ul>
+      <p class="muted" style="font-size:.88rem"><i>Határ:</i> csak szimuláció, önértékelés, nem tanúsított.</p></div>
+    <div class="card k"><b>Cyber Genesis Challenge</b>
+      <p class="muted" style="margin:.1rem 0 .4rem">próbáld feltörni</p>
+      <ul><li>állandó felhívás a független ellenőrzésre</li><li>a „szedjétek szét” gyakorlatban</li></ul>
+      <p class="muted" style="font-size:.88rem"><i>Határ:</i> az oldal „100%”-ot mond, ez erősebb, mint amit mi itt állítunk: kihívás, nem bizonyíték.</p></div>
+  </div>
+  <p class="lead muted">Mindhárom az előadó saját munkája: nem független példa.</p>
+  <aside class="notes" data-cut="Ha csúszol: hagyd ki az egész diát, és lépj a következőre (Összegzés).">
+    <p class="do">Idő: 26–29'. Három példa, kb. 45 másodperc mindegyik. Előre nyisd meg a három lapot: github.com/LemonScripter/metaspace-membrane · satellit-simulation.metaspace.bio · challenge.metaspace.bio. Csúszásnál az egész dia kihagyható.</p>
+    <p class="say">Mondd (bevezető): „Három saját alkalmazás, három különböző határ. Mindhárom az enyém, tehát nem független példa. Mindhárom mellé mondom, hol ér véget, amit állítunk.”</p>
+    <p class="say">1. Membrán: „Az MI-ügynök hatását ítéli meg, nem a belsejét: ugyanaz a gondolat, mint a pacemakernél. A jogosultsági jegyzék (docs/CLAIMS.md) minden állításhoz szintet ad: kikényszerített (HARD), együttműködő (COOPERATIVE) vagy nem védelem (N/A). A felkészülés során is ez fogott meg minket: letiltott parancsokat és a projekten kívüli írást.” <b>Határ (mondd ki):</b> a saját jegyzéke szerint nem teszi a modellt injekció-állóvá (C-05), a Python-réteg megkerülhető (C-15), kutatási prototípus, nincs külső audit (C-08).</p>
+    <p class="say">2. Műholdas hibakezelő: „Élő szimuláció: hibát injektálok (napelem, GPS-hamisítás, akkumulátor), és látszik az észlelés és az elkülönítés.” <b>Határ (mondd ki):</b> csak szimuláció, önértékelés, nem tanúsított; a tár adata szerint átlag kb. 20 ms, 3 × 100 futásból.</p>
+    <p class="say">3. Cyber Genesis Challenge: „Egy állandó felhívás: próbáljátok feltörni. Ez a független ellenőrzés meghívása.” <b>Határ (mondd ki):</b> az oldal „100%”-ot használ, ez erősebb a mi mércénknél; kihívásként mutasd, ne bizonyítékként. A DCC-ről csak a hatást mondd (mérve, eldobható virtuális gép, nincs üzemben, root ellen nem véd), mechanizmust ne.</p>
+    <p class="ask">Ha kérdezik a BioWallet-ről (tartalék; a tár README-je és SECURITY.md-je alapján, 2026-11-06): „A tár nem hibát jelez. Azt mondja, hogy a build viselkedése a hivatalos címen kívül (file://, más hosztok) még nincs letesztelve: a kamera és az eszközkulcs (WebAuthn) az eredeti origin-hez kötött; a legutóbbi kiadott változat régebbi a jelenleginél; és külső biztonsági audit még nem történt. A kulcs papírról offline helyreállítható (recovery_tool.html); az egyenleg és a küldés internetet igényel.” A biztonságot tehát még nem zártuk le: ezért nem ajánlott valódi pénzre.</p>
+    <p class="do">Olvasható változat: diak.html#20 (két valódi próbálkozás: BioWallet, műholdas hibakezelő).</p>
+  </aside>
+</section>
+
 <!-- 10 · ZÁRÁS -->
-<section class="slide" aria-label="Záró gondolat" data-part="Zárás" data-t="26">
+<section class="slide" aria-label="Záró gondolat" data-part="Zárás" data-t="29">
   <p class="tag">Összegzés</p>
   <p class="big">A gép írta kód <b>biztonságos kimenete</b> kikényszeríthető a kód ismerete nélkül, de <b>nem a szakterület ismerete nélkül</b>.</p>
   <ol class="steps">
@@ -369,7 +399,7 @@ body.np-open #np{display:block}
   </ol>
   <p class="lead muted">Nem a programozást kell tudni, hanem azt, amit a program kiszolgál. Azt tudod meg, mi nem történhet meg, nem azt, hogyan működik. Hogy jól is működik, ahhoz a teszt is kell.</p>
   <aside class="notes" data-cut="">
-    <p class="do">Idő: 26–27'. Lassan, szünetekkel.</p>
+    <p class="do">Idő: 29–30'. Lassan, szünetekkel.</p>
     <p class="say">Mondd: Három lépés: te mondod ki, mi a megengedett; a gép írja a kódot; a kapu kívül áll, megkerülhetetlen, és a szabályait gép ellenőrizte. A .bio a határ leírása, nem a világé és nem a belsőé.</p>
     <p class="say">Mondd (a kulcsmondat): „Nem a programozást kell tudni, hanem azt, amit a program kiszolgál.” A szakterületi tudás nélkülözhetetlen: ebből lesz a megengedett halmaz és a veszélylista, nélküle nincs kapu. A megvalósítás programnyelve és a kód belseje viszont nem feltétele a biztonságnak. (Pontosan: kell hozzá formális pontosság, vagyis a szabály típussal, egységgel, tartománnyal, és a kapu megkerülhetetlen elhelyezése; ez nem a megvalósítás nyelve.)</p>
     <p class="say">Mondd: A biztonságot (a kimenet nem lép ki a megengedettből) kikényszerítjük. A helyességet (a program elvégzi a dolgát) nem: ahhoz a szakterület és a tesztelés kell. Ezt a kettőt ne keverjétek.</p>
@@ -379,7 +409,7 @@ body.np-open #np{display:block}
 </section>
 
 <!-- 11 · TOVÁBB -->
-<section class="slide" aria-label="Tovább" data-part="Zárás" data-t="27">
+<section class="slide" aria-label="Tovább" data-part="Zárás" data-t="30">
   <p class="tag">Tovább, ha érdekel</p>
   <h2>Minden, amit ma láttál, utánaolvasható</h2>
   <ul class="lead">
@@ -391,7 +421,7 @@ body.np-open #np{display:block}
   </ul>
   <div class="qr"><div id="qr2"></div><p class="url">vibe-coding.metaspace.bio</p></div>
   <aside class="notes" data-cut="">
-    <p class="do">Idő: 27–28'. Utána kérdések. Kérdésnél: B billentyű = tartalék diák listája.</p>
+    <p class="do">Idő: 30–31'. Utána kérdések. Kérdésnél: B billentyű = tartalék diák listája.</p>
     <p class="say">Mondd: Minden itt van a kódon: a szószedet, a közreműködési nyilatkozat, az olvasható diák, a tanulmány PDF-ben és weben, a dosszié. Az eszközt független fél még nem ellenőrizte: próbáljátok megtörni, és írjatok, ha sikerül. A bizonyítások futtatható szkriptjei és a hibabejelentés (issue): github.com/LemonScripter/hinta-vibe-coding.</p>
     <p class="say">Mondd (a példa, 20–30 másodperc): „Ez az előadás maga is MI-vel írt anyag. Én mondtam meg, mi a megengedett (csak mért állítás, minden állításhoz ellenpróba); Claude írt. A kapu azonban nem volt független: a hibákat, hét túlzó állítást, egy informatikus bírálata után találtuk meg. Ez a tétel működés közben: a kapunak a modelltől és tőlem is függetlennek kell lennie.” Részletek: kozremukodes.html.</p>
     <p class="do">A QR kód a vibe-coding.metaspace.bio nyitóoldalra visz: onnan érhető el az olvasható főelőadás, a kiegészítő, a típusos dosszié és a tanulmány (weben és PDF-ben).</p>
@@ -407,6 +437,7 @@ body.np-open #np{display:block}
     <tr><td>Szószedet: melyik szó mit jelent, bevett informatikai név, hol sántít a hasonlat (szerkezeti analógia, biztonság és helyesség, bizonyított)</td><td><a href="szotar.html" target="_blank">szószedet</a></td></tr>
     <tr><td>Az élet mint alkotmány; a .bio nyelv; a pacemaker és a sejt ugyanazon a nyelven</td><td><a href="diak.html#4" target="_blank">#4</a> · <a href="diak.html#5" target="_blank">#5</a></td></tr>
     <tr><td>Ugyanez a biztosítékban; a tétel tagadása (ellenpélda-keresés)</td><td><a href="diak.html#8" target="_blank">#8</a> · <a href="diak.html#9" target="_blank">#9</a></td></tr>
+    <tr><td>A három alkalmazás és a BioWallet (miért nem javasolt valódi pénzre: a tár szerint a hivatalos címen kívüli használat még nincs letesztelve, külső audit nincs)</td><td><a href="diak.html#20" target="_blank">#20</a> · <a href="https://github.com/LemonScripter/biowallet" target="_blank">biowallet</a></td></tr>
     <tr><td>Vibe-coding kapuval a gyakorlatban</td><td><a href="diak.html#11" target="_blank">#11</a></td></tr>
     <tr><td>Közösségi életképesség, kvóta, sebesség és koncentráció</td><td><a href="diak.html#12" target="_blank">#12</a> · <a href="diak.html#13" target="_blank">#13</a> · <a href="diak.html#14" target="_blank">#14</a> · <a href="diak.html#15" target="_blank">#15</a></td></tr>
     <tr><td>Tárgynyelv és metanyelv; a metanyelv elleni érvek</td><td><a href="diak.html#16" target="_blank">#16</a> · <a href="diak.html#17" target="_blank">#17</a> · <a href="diak.html#18" target="_blank">#18</a></td></tr>
@@ -2842,7 +2873,7 @@ footer b{color:var(--fg)}
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var liveCount = slides.filter(function(s){ return s.hasAttribute('data-t'); }).length;
   var count = document.getElementById('count'), bar = document.getElementById('bar'), np = document.getElementById('np');
-  var END = 28; // percben: a terv vége
+  var END = 31; // percben: a terv vége
   var i = 0, t0 = null, pw = null, lastLocal = 0, postedT0 = null, syncV = -1;
 
   function fit(){
