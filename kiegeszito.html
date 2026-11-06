@@ -189,7 +189,7 @@ table.spec th{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
       <tr><td><span class="c-k">CRITICAL_SHIELD</span> { heart_rate = 60.0; interval_ms = 250.0; }</td><td>Baj esetén a biztonságos állapot: 60 ütés/perc, 250 ms köz.</td></tr>
     </tbody>
   </table>
-  <p class="muted" style="font-size:.85rem">A típusos fájl (<code>t1_eredeti_tipusos.bio</code>) lényegi sorai, a kulcsszavak eredetiben. A kihagyott sorok az állapotgép átmenetei és a SIL-címke. A jeleknek iránya, egysége és tartománya van; a Studio ezt ellenőrzi.</p>
+  <p class="muted" style="font-size:.85rem">A típusos fájl (<code>t1_eredeti_tipusos.bio</code>) lényegi sorai, a kulcsszavak eredetiben. A kihagyott sorok: a rate_accel és sensor_stable jel, az állapotgép átmenetei, a BIO_VERSION és a SIL-címke; a szóközök és a pontosvesszők is egyszerűsítve vannak. A jeleknek iránya, egysége és tartománya van; a Studio ezt ellenőrzi.</p>
   <div class="ellen">Ez nem programozás? <b>A megvalósítást nem programozod, a határt formális nyelven (.bio) írod le. Ez pontos fogalmazás.</b> A szabályok megírásához az orvosi szakterületet kell ismerni (mekkora a biztonságos tartomány), a programnyelvet nem. A pontos fogalmazás kézi kódolásnál is kell, tehát nem a gép teszi fölöslegessé.</div>
 </section>
 
@@ -224,7 +224,7 @@ table.spec th{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
       <button class="btn sec" type="button" data-copy="spec3">Másolás a Studióhoz</button>
     </div>
   </div>
-  <p class="muted" style="font-size:.82rem">A veszély megnevezése új mérőszámot kíván: a <code>rate_decel</code> jelet is deklarálni kell. A fájlok típusosak (kapcsos zárójeles forma): a jeleknek iránya, típusa, egysége és tartománya van. Mért eredmények: 2026-11-01, MetaSpace Studio 2.12 (élő, a <code>/app</code> felület). A „.bio specifikáció” panelbe másolás előtt jelöld ki a régi szöveget (<b>Ctrl+A</b>), majd a <b>Verify</b> gomb ugyanezt adja.</p>
+  <p class="muted" style="font-size:.82rem">A veszély megnevezése új mérőszámot kíván: a <code>rate_decel</code> jelet is deklarálni kell. A fájlok típusosak (kapcsos zárójeles forma): a jeleknek iránya, típusa, egysége és tartománya van. Mért eredmények: 2026-11-01, MetaSpace Studio 2.12 (élő, a <code>/app</code> felület); 2026-11-06-án az éles 2.12-n újra lefuttatva (ugyanaz: PASS, FAIL 40 ütés/perc és 3-as eséssel, PASS). A „.bio specifikáció” panelbe másolás előtt jelöld ki a régi szöveget (<b>Ctrl+A</b>), majd a <b>Verify</b> gomb ugyanezt adja.</p>
   <div class="ellen">Akkor a gép semmit sem bizonyít? <b>Dehogy.</b> Bizonyítja, hogy a megnevezett veszélyt a szabályok kizárják, vagy ellenpéldát ad. Azt viszont nem bizonyíthatja, hogy minden veszélyt megneveztünk. Ez az ember dolga, és ugyanúgy az, mint a kézi kódolásnál.</div>
 </section>
 
@@ -254,7 +254,7 @@ bool inv_decel_limit = (rate_decel_cmd &lt;= 2.0);
 bool inv_min_interval = (interval_ms_cmd &gt;= 250.0);</pre>
       <p class="muted" style="font-size:.82rem;margin-top:.3rem">Szabálysértésnél a kimenet a biztonságos érték (60 ütés/perc), a blokk hibát jelez és zár, amíg le nem nyugtázzák.</p></div>
   </div>
-  <p class="muted" style="font-size:.82rem">Mért eredmény: 2026-11-01, MetaSpace Studio 2.12 (élő), a javított, típusos pacemaker-specifikáció és a megnevezett veszély; mindhárom nyelvre PASS, telepíthető jelzéssel. Csak az öt szabálysor látszik, a keretkód kimaradt.</p>
+  <p class="muted" style="font-size:.82rem">Mért eredmény: 2026-11-01, MetaSpace Studio 2.12 (élő; 2026-11-06-án újragenerálva: a három kód bájtra azonos), a javított, típusos pacemaker-specifikáció és a megnevezett veszély; mindhárom nyelvre PASS, telepíthető jelzéssel. Csak az öt szabálysor látszik, a keretkód kimaradt.</p>
   <div class="ellen">Ugyanazt csinálja mind a három? <b>A szabályok és a kimenet ugyanaz.</b> Sértésnél mindhárom a biztonságos értéket (60 ütés/perc) adja, és zár, amíg le nem nyugtázzák. Ez azért van így, mert a típusos fájl kimondja, melyik jel kimenet (<code>OUTPUT</code>): a lapos pacemaker-fájlnál, kimeneti jel nélkül, az ipari vezérlő és a C csak hibát jelzett és zárolt (a generált kód szerint: „monitor: nincs kimeneti aktuátor”). A keret különbözik: a Python kernel az első híváskor minden szenzort látni akar. A C-kimenet ezen a gépen nincs lefordítva, a szintaxisát átnézés igazolja.</div>
 </section>
 <!-- K5 -->
@@ -289,7 +289,7 @@ bool inv_min_interval = (interval_ms_cmd &gt;= 250.0);</pre>
       </div>
       <p class="muted" style="font-size:.8rem;margin-top:.4rem">A bizonyításnak ugyanazzal a számábrázolással kell számolnia, mint a géppel, amelyen a kapu fut. Az IEEE-754 a számítógépek lebegőpontos számábrázolási szabványa.</p></div>
   </div>
-  <p class="muted" style="font-size:.82rem">Mért eredmények: 2026-10-30, MetaSpace Studio 2.8 (élő). A Studio saját lebegőpontos tesztkészlete (12 teszt) zöld.</p>
+  <p class="muted" style="font-size:.82rem">Mért eredmények: 2026-10-30, MetaSpace Studio 2.8 (élő); 2026-11-06-án az éles 2.12-n újra ellenőrizve (is_valid: Python igen, C igen, ipari vezérlő nem; a + b ≤ 0,3: egzakt módban megfelel, lebegőpontosban hibát jelez). A Studio saját lebegőpontos tesztkészlete (12 teszt) 2026-10-30-án zöld volt.</p>
   <div class="ellen">A lebegőpontos mód mindent megold? <b>Nem.</b> Opcionális: alapból egzakt számolás van. A nem-szám kezelése nem automatikus, a szabályban ki kell mondani (<code>is_valid</code>), az ipari vezérlőn pedig nem hordozható, ott külön logikai jel kell. A gép azt is csak akkor tudja, ha a szabályban szerepel.</div>
 </section>
 
@@ -305,7 +305,7 @@ bool inv_min_interval = (interval_ms_cmd &gt;= 250.0);</pre>
   <div class="cols">
     <div class="card k"><b>Mit rögzít</b>
       <ul style="font-size:.9rem">
-        <li><b>Melyik specifikációt bizonyítottuk:</b> a szöveg ujjlenyomata (SHA-256), <code>98e3dc3c…</code> Egy betű módosítása más ujjlenyomatot ad.</li>
+        <li><b>Melyik specifikációt bizonyítottuk:</b> a szöveg ujjlenyomata (SHA-256), <code>98e3dc3c…</code> Egy betű módosítása más ujjlenyomatot ad. (Ellenőrizve 2026-11-06: ez a <code>t3_javitott.bio</code> fájl LF-soremeléssel számolt SHA-256 értéke.)</li>
         <li><b>Mikor és mivel:</b> 2026-11-01, MetaSpace Studio 2.12, Z3 gépi bizonyító.</li>
         <li><b>Melyik veszélyt melyik szabály zárja ki:</b> <code>fast_drop</code> → <b>KIZÁRVA</b> → <code>decel_limit</code> (<code>rate_decel &lt;= 2.0</code>).</li>
         <li><b>Minden szabályra ellenpélda:</b> megmutatja, hogy a szabály értelmes, vagyis létezik állapot, amely megsérti.</li>
@@ -359,7 +359,7 @@ pacing_rate = 60;</pre>
       <p class="muted" style="font-size:.8rem;margin-top:.3rem">Eredmény: <span class="pill p-ok">PASS</span> mindkét veszélyt egy szabály bizonyítottan kizárja; Python, ipari vezérlő és C is generálódik, telepíthető jelzéssel.</p>
       <button class="btn sec" type="button" data-copy="spec_k7bio" style="margin-top:.4rem">Másolás a Verify-hoz</button></div>
   </div>
-  <p class="muted" style="font-size:.82rem">Mért: 2026-10-30, MetaSpace Studio 2.8 (élő). Saját fájlainkon az import csak részben működött: a <code>pacemaker_guardrail.py</code>-ban nem ismerte fel a szenzort és az aktuátort („add meg kézzel”), a <code>pacemaker_runtime_kernel.py</code>-ban pedig nem a pulzust, hanem az <code>ai_command</code> jelet találta meg. Az import névmintákra épít (<code>read_…</code>, <code>set_…</code>).</p>
+  <p class="muted" style="font-size:.82rem">Mért: 2026-10-30, MetaSpace Studio 2.8 (élő); a mintakód importját 2026-11-06-án az éles 2.12 ugyanígy kezelte (heart_rate, pacing_rate, 165 és 40, 0–100 alaptartomány). Saját fájlainkon az import csak részben működött (2.8-on mérve, újra nem futtatva): a <code>pacemaker_guardrail.py</code>-ban nem ismerte fel a szenzort és az aktuátort („add meg kézzel”), a <code>pacemaker_runtime_kernel.py</code>-ban pedig nem a pulzust, hanem az <code>ai_command</code> jelet találta meg. Az import névmintákra épít (<code>read_…</code>, <code>set_…</code>).</p>
   <div class="ellen">Akkor az import megérti a programot? <b>Nem.</b> Csak a szerkezetét olvassa ki, a nevekből és a konstansokból. Hogy mi a biztonságos határ, azt az ember mondja ki, a szakterületi tudásából. Ha a program más nevekkel dolgozik, kézzel kell kiegészíteni.</div>
 </section>
 
@@ -395,7 +395,7 @@ pacing_rate = 60;</pre>
   <div class="cols">
     <div class="card k"><b>Mit ad az eszköz (mért)</b>
       <ul style="font-size:.9rem">
-        <li>A leírt szabályok <b style="display:inline;margin:0;color:var(--fg)">belső helyességét</b>, gépi bizonyítással. A Studio saját tesztjei zöldek: 144 teszt, 0 hibás.</li>
+        <li>A leírt szabályok <b style="display:inline;margin:0;color:var(--fg)">belső helyességét</b>, gépi bizonyítással. A Studio saját tesztjei zöldek: 212 teszt, 0 hibás (2026-11-06, v2.12; a 2026-10-30-i mérés a 2.8-on 144 volt).</li>
         <li>A kapu <b style="display:inline;margin:0;color:var(--fg)">szerkezeti betartását</b>: a generált Python kernelen mérve sértő érték nem alkalmazódik, hibánál tiltás van (a C nincs lefordítva).</li>
         <li>Egy specifikációból <b style="display:inline;margin:0;color:var(--fg)">három nyelvet</b> és egy igazolási dossziét ujjlenyomattal.</li>
         <li>Ellenpéldát a lyukra, <b style="display:inline;margin:0;color:var(--fg)">ha megneveztük</b> a veszélyt.</li>
