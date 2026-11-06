@@ -6,7 +6,7 @@ A HInTa (Hargita Informatikusok Találkozója), 2026. november 7. előadásának
 
 ## A tézis egy mondatban
 
-A gép írta kód **biztonságos kimenete** kikényszeríthető a kód ismerete nélkül, ha a hatást ítéljük meg, a programtól független kapuval. A **helyességhez** (hogy a program el is végzi a dolgát) továbbra is a szakterület ismerete és tesztelés kell.
+A gép írta kód **biztonságos kimenete** kikényszeríthető a kód ismerete nélkül, de **nem a szakterület ismerete nélkül**: a megengedettet és a veszélyeket a területet ismerő mondja ki, és a kapu a programtól független. Nem a programozást kell tudni, hanem azt, amit a program kiszolgál. A **helyességhez** (hogy a program el is végzi a dolgát) ezen felül tesztelés kell.
 
 A kapu-lemma egyszerű (egy ellenőrzés és egy tartalék érték); a szakirodalom futásidejű kikényszerítésnek, biztonsági pajzsnak hívja. Nem ez az újdonság, és ezt a diák is kimondják. Részletek: [`szotar.html`](szotar.html).
 

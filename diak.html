@@ -136,7 +136,7 @@ svg text{font-family:inherit;fill:var(--fg)}
   <p class="lead">Létrehozható-e egy helyesen, rendeltetése szerint működő rendszer úgy, hogy nem látunk a belsejébe, és nem ismerjük a belső szabályait? <span class="muted">(A nyelvben a nyelvtant, a programozásban a programozási nyelv szabályait.)</span></p>
   <p class="lead">Írható-e megbízhatóan működő Turing-teljes program úgy, hogy magát a programozási nyelvet nem ismerjük?</p>
   <p class="lead">És ha a programot nem mi írjuk, hanem a mesterséges intelligencia (vibe-coding), és el sem olvassuk: lehet-e megbízhatóan működő a rendszer a programozási nyelv ismerete nélkül?</p>
-  <p class="ans">Mindhárom kérdésre a válasz igen, ha nem az okot (a parancsot), hanem a hatását kényszerítjük ki: a program kimenetén, a programtól független kapuval. Pontosabban: a <b>biztonságos kimenet</b> kikényszeríthető; hogy a program jól is működik, az nem.</p>
+  <p class="ans">Mindhárom kérdésre a válasz igen, ha nem az okot (a parancsot), hanem a hatását kényszerítjük ki: a program kimenetén, a programtól független kapuval. Pontosabban: a <b>biztonságos kimenet</b> kikényszeríthető a kód ismerete nélkül, a <b>szakterület</b> ismerete nélkül viszont nem; hogy a program jól is működik, az nem garantálható.</p>
   <p class="muted" style="font-size:.85rem">„Helyesen, rendeltetése szerint”: a kimenet mindig a megengedett halmazban van, vagyis azon belül, amit a rendeltetés megenged. Hogy a rendeltetés maga helyes-e, az értékválasztás (P1), és az, hogy a rendszer valamit meg is tegyen, nem kényszeríthető ki. Amit nem lehet megspórolni: annak ismerete, hogy mi a megengedett. Minden állításhoz ellenpróba tartozik. A „kapu” szó informatikai neve: futásidejű figyelő, biztonsági pajzs; a szavak jelentése a <a href="szotar.html" style="color:var(--accent);font-weight:700">szószedetben</a> áll. Az eszköz (MetaSpace Studio) szerzője az előadó; független ellenőrzése nincs. <b>Az anyag Claude-dal (Anthropic MI) készült</b>: a tézis és a felelősség a szerzőé, a szöveg és a kód nagy részét a modell írta (<a href="kozremukodes.html" style="color:var(--accent);font-weight:700">közreműködés</a>).</p>
 </section>
 
@@ -722,7 +722,7 @@ FAILSAFE: rate = 60.0</pre>
 <section class="slide" aria-label="Záró gondolat">
   <p class="tag">Összegzés</p>
   <h2>Fő tétel</h2>
-  <p class="big">A gép írta kód <b>biztonságos kimenete</b> kikényszeríthető a kód ismerete nélkül, ha nem az okot, hanem a hatást ítéljük meg, a rendszeren kívül.</p>
+  <p class="big">A gép írta kód <b>biztonságos kimenete</b> kikényszeríthető a kód ismerete nélkül, de <b>nem a szakterület ismerete nélkül</b>: a megengedettet a területet ismerő mondja ki.</p>
   <div class="cols tight">
     <div class="card k"><b>Hogyan?</b>
       <ol>
